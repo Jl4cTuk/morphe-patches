@@ -9,10 +9,21 @@ Patches for apps I like.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
+> **[v1.0.0-dev.1](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.0.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;1 patches total
+<details open>
+<summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
 
-#### A list of your patches will automatically be shown here after your first patches release is created.
+**🎯 Supported versions:**
 
-&nbsp;
+| 1.105.0.2 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Disable Mine redesign](#disable-mine-redesign) | Reverts the Mine screen to the classic layout, disabling the redesigned V2/V3 interface. |  |
+
+</details>
 
 <!-- PATCHES_END -->
 
