@@ -17,6 +17,9 @@ This repository contains personal Morphe patches for Android applications.
 
 - Distinguish standard APK installation from root mount installation when planning runtime tests.
 - On a device where Morphe has confirmed root access, prefer Morphe Manager's `Root mount installer` or Morphe CLI with `--mount`. The root workflow mounts the patched APK over the installed original, preserving the original installation and app data and avoiding the normal APK signature-update conflict.
+- On KernelSU or KernelSU Next devices, keep the global `Umount modules by default` protection enabled, but disable `Umount modules` in the individual App Profile of each app tested through Morphe root mount. Do not grant root access to the target app; only change its mount visibility.
+- After changing a target app's `Umount modules` profile, force-stop the target app, then apply the patch or use `Remount` before launching it again. Mount namespace visibility is established when the app process starts.
+- If Morphe reports a successful mount, or ADB sees the patched APK at the installed `base.apk` path, but the app still behaves like the original, treat KernelSU mount namespace isolation as the first suspect. Verify the target app's `Umount modules` profile before changing fingerprints, repatching repeatedly, or considering direct APK replacement.
 - Do not state that the original app must be uninstalled when root mount installation is available. The original app must remain installed as the mount target.
 - Do not manually overwrite `/data/app/.../base.apk`; let Morphe manage the patched APK, mount, permissions, SELinux context, persistence, and unmount lifecycle.
 - Verify root in the same execution context that will perform the mount. A failed `adb shell su -c id` only proves that ADB shell cannot obtain root; Morphe may still have per-app root authorization from the device's root manager.
