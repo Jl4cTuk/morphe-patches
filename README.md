@@ -1,6 +1,6 @@
-# 👋🧩 Morphe Patches template
+# Jl4cTuk Morphe Patches
 
-Template repository for Morphe Patches.
+Personal Morphe patches for Android apps.
 
 ## ❓ About
 
@@ -27,19 +27,9 @@ TODO: Update this about section with a brief introduction/summary about this rep
 
 To start using this template, follow these steps:
 
-1. [Setup](https://github.com/MorpheApp/morphe-documentation/blob/main/docs/morphe-development/README.md) your development environment including adding a GitHub PAT as described [here](https://github.com/MorpheApp/morphe-patcher/blob/main/docs/2_1_setup.md#-prepare-the-environment).
-2. [Create a new repository using this template](https://github.com/new?template_name=morphe-patches-template&template_owner=MorpheApp). Select create a new repository, and **enable 'Include all branches'** 
-3. Enable "Allow GitHub Actions to create and approve pull requests" in your repo Settings > Actions > General > Workflow permissions
-4. Update the [build.gradle.kts](patches/build.gradle.kts) file (Specifically, the 
-   [group of the project](patches/build.gradle.kts#L1), and the [About](patches/build.gradle.kts#L6-L11))
-5. Update the [README.md](README.md) file to be specific of your repo, and update the links in the [issue templates](.github/ISSUE_TEMPLATE).
-6. Choose a name for your patches project. Keep in mind you must use a name that does not 
-   imply authorship by the Morphe open source project. If unsure, then simply name these
-   patches after yourself ("UserXYZ Morphe patches"). See the [NOTICE](NOTICE) for details. 
+5. Update the links in the [issue templates](.github/ISSUE_TEMPLATE).
 7. (Optional): Add `patches-bundle.png` to the project if you want a custom icon to show in
    Morphe Manager instead of your GitHub profile avatar.
-
-🎉 You are now ready to start creating patches!
 
 ## 🧑‍💻 Usage
 
@@ -72,15 +62,15 @@ To develop and release your Patches using this template:
 
 #### How to use these patches
 
-Click here to add these patches to Morphe: https://morphe.software/add-source?github=xyz-user/xyz-patches
+Click here to add these patches to Morphe: https://morphe.software/add-source?github=Jl4cTuk/morphe-patches
 
-Or manually add this repository url as a patch source in Morphe: https://github.com/xyz-user/xyz-patches
+Or manually add this repository url as a patch source in Morphe: https://github.com/Jl4cTuk/morphe-patches
 
 ### 🛠️ Building
 
-To build UserXYZ Patches,
+To build Jl4cTuk Patches,
 you can follow the [Morphe documentation](https://github.com/MorpheApp/morphe-documentation).
 
 ## 📜 License
 
-UserXYZ Patches are licensed under the [GNU General Public License v3.0](LICENSE)
+Jl4cTuk Patches are licensed under the [GNU General Public License v3.0](LICENSE)
