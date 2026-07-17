@@ -13,6 +13,16 @@ This repository contains personal Morphe patches for Android applications.
 - The build produces an MPP bundle at `patches/build/libs/patches-*.mpp`.
 - Apply the generated bundle locally with Morphe CLI in the same way as any other patch bundle.
 
+## Local patch testing
+
+- Distinguish standard APK installation from root mount installation when planning runtime tests.
+- On a device where Morphe has confirmed root access, prefer Morphe Manager's `Root mount installer` or Morphe CLI with `--mount`. The root workflow mounts the patched APK over the installed original, preserving the original installation and app data and avoiding the normal APK signature-update conflict.
+- Do not state that the original app must be uninstalled when root mount installation is available. The original app must remain installed as the mount target.
+- Do not manually overwrite `/data/app/.../base.apk`; let Morphe manage the patched APK, mount, permissions, SELinux context, persistence, and unmount lifecycle.
+- Verify root in the same execution context that will perform the mount. A failed `adb shell su -c id` only proves that ADB shell cannot obtain root; Morphe may still have per-app root authorization from the device's root manager.
+- Without a working root mount path, standard installation can fail because the patched APK has a different signature. Do not uninstall the original app or clear its data without explicit user authorization.
+- First validate that the bundle builds and that each selected patch applies successfully. Treat installation or mounting and functional behavior as a separate runtime validation step.
+
 ## Generated files
 
 - Do not manually edit `patches-list.json`, `patches-bundle.json`, or `CHANGELOG.md`.
