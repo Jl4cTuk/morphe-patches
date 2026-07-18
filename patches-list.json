@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.0-dev.2",
+  "version": "1.0.0-dev.3",
   "patches": [
     {
       "name": "Disable Mine redesign",
@@ -31,6 +31,32 @@
     {
       "name": "Disable ads",
       "description": "Removes all advertisements from the app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.vk.store",
+          "name": "RuStore",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0077FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.105.0.2",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Skip update auth",
+      "description": "Removes the login requirement when updating apps.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

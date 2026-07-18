@@ -1,3 +1,9 @@
+## [1.0.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0-dev.2...v1.0.0-dev.3) (2026-07-18)
+
+### ✨ New Features
+
+* add Skip update auth patch for RuStore ([4684466](https://github.com/Jl4cTuk/morphe-patches/commit/46844666281baed8e38a579d8d52e24ff9659f6a))
+
 ## [1.0.0-dev.2](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0-dev.1...v1.0.0-dev.2) (2026-07-18)
 
 ### ✨ New Features
