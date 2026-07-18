@@ -41,6 +41,9 @@ This repository contains personal Morphe patches for Android applications.
 - Use `fix:` for user-facing fixes.
 - Use `chore:` for changes that should not appear in the user-facing changelog.
 - `feat:` and `fix:` commits trigger new prereleases; `chore:` commits do not create a release.
+- Before committing or pushing, stage only the files explicitly requested for the change and verify the complete staged diff and status internally to prevent unrelated changes from being included.
+- Preparing a commit means updating the staged set and proposing a commit message only. Do not list or reproduce the staged files or diff unless the user explicitly asks, because the user reviews the staged changes locally.
+- Do not create the commit or push it until the user gives a separate explicit instruction after reviewing the staged changes.
 
 ## Releases
 
