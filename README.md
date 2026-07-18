@@ -9,9 +9,9 @@ Patches for apps I like.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.0.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.0.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;3 patches total
+> **[v1.0.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.0.0-dev.4)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;4 patches total
 <details open>
-<summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -23,6 +23,7 @@ Patches for apps I like.
 |----------|----------------|-----------|
 | [Disable Mine redesign](#disable-mine-redesign) | Reverts the Mine screen to the classic layout, disabling the redesigned V2/V3 interface. |  |
 | [Disable ads](#disable-ads) | Removes all advertisements from the app. |  |
+| [Disable background scan](#disable-background-scan) | Disables the periodic Kaspersky background device scan. |  |
 | [Skip update auth](#skip-update-auth) | Removes the login requirement when updating apps. |  |
 
 </details>

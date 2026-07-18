@@ -1,3 +1,9 @@
+## [1.0.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0-dev.3...v1.0.0-dev.4) (2026-07-18)
+
+### ✨ New Features
+
+* add Disable background scan patch for RuStore ([29f01c3](https://github.com/Jl4cTuk/morphe-patches/commit/29f01c3769a764dcabc5df99d26dc1c6700b4f10))
+
 ## [1.0.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0-dev.2...v1.0.0-dev.3) (2026-07-18)
 
 ### ✨ New Features
