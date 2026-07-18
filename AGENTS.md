@@ -43,7 +43,9 @@ This repository contains personal Morphe patches for Android applications.
 - `feat:` and `fix:` commits trigger new prereleases; `chore:` commits do not create a release.
 - Before committing or pushing, stage only the files explicitly requested for the change and verify the complete staged diff and status internally to prevent unrelated changes from being included.
 - Preparing a commit means updating the staged set and proposing a commit message only. Do not list or reproduce the staged files or diff unless the user explicitly asks, because the user reviews the staged changes locally.
-- Do not create the commit or push it until the user gives a separate explicit instruction after reviewing the staged changes.
+- Treat staging and publishing as a mandatory two-step approval gate. After implementing a change, update the staged set, propose a commit message, and stop the turn so the user can review the staged changes locally.
+- A request to commit or push that appears in the same message as an implementation request does not authorize publishing. Even when the user says to commit or push immediately, complete only the implementation and staging step, propose the commit message, and wait.
+- Create the commit or push only after the user sends a new, separate instruction in a later message, after the staged-review checkpoint. Never implement, stage, commit, and push within the same turn.
 
 ## Releases
 
