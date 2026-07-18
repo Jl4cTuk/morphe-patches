@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.0-dev.4",
+  "version": "1.0.0-dev.5",
   "patches": [
     {
       "name": "Disable Mine redesign",
@@ -57,6 +57,32 @@
     {
       "name": "Disable background scan",
       "description": "Disables the periodic Kaspersky background device scan.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.vk.store",
+          "name": "RuStore",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0077FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.105.0.2",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable gaming profile",
+      "description": "Removes the Game Profile section from the Mine screen, including the button and the usage statistics screen.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

@@ -1,3 +1,9 @@
+## [1.0.0-dev.5](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0-dev.4...v1.0.0-dev.5) (2026-07-18)
+
+### ✨ New Features
+
+* add Disable gaming profile patch for RuStore ([67742b1](https://github.com/Jl4cTuk/morphe-patches/commit/67742b1a57052ea8354df29c3ec810b980bc3af4))
+
 ## [1.0.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0-dev.3...v1.0.0-dev.4) (2026-07-18)
 
 ### ✨ New Features

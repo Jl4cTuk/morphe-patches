@@ -9,9 +9,9 @@ Patches for apps I like.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.0.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.0.0-dev.4)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;4 patches total
+> **[v1.0.0-dev.5](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.0.0-dev.5)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;5 patches total
 <details open>
-<summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
+<summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;5 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -24,6 +24,7 @@ Patches for apps I like.
 | [Disable Mine redesign](#disable-mine-redesign) | Reverts the Mine screen to the classic layout, disabling the redesigned V2/V3 interface. |  |
 | [Disable ads](#disable-ads) | Removes all advertisements from the app. |  |
 | [Disable background scan](#disable-background-scan) | Disables the periodic Kaspersky background device scan. |  |
+| [Disable gaming profile](#disable-gaming-profile) | Removes the Game Profile section from the Mine screen, including the button and the usage statistics screen. |  |
 | [Skip update auth](#skip-update-auth) | Removes the login requirement when updating apps. |  |
 
 </details>

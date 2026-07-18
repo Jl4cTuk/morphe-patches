@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-18T17:41:25",
-  "description": "## [1.0.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0-dev.3...v1.0.0-dev.4) (2026-07-18)\n\n### ✨ New Features\n\n* add Disable background scan patch for RuStore ([29f01c3](https://github.com/Jl4cTuk/morphe-patches/commit/29f01c3769a764dcabc5df99d26dc1c6700b4f10))",
-  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.0.0-dev.4/patches-1.0.0-dev.4.mpp",
+  "created_at": "2026-07-18T17:56:55",
+  "description": "## [1.0.0-dev.5](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0-dev.4...v1.0.0-dev.5) (2026-07-18)\n\n### ✨ New Features\n\n* add Disable gaming profile patch for RuStore ([67742b1](https://github.com/Jl4cTuk/morphe-patches/commit/67742b1a57052ea8354df29c3ec810b980bc3af4))",
+  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.0.0-dev.5/patches-1.0.0-dev.5.mpp",
   "signature_download_url": "",
-  "version": "1.0.0-dev.4"
+  "version": "1.0.0-dev.5"
 }
