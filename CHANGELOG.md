@@ -1,3 +1,9 @@
+## [1.1.0-dev.1](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0...v1.1.0-dev.1) (2026-07-19)
+
+### ✨ New Features
+
+* add Ozon ad removal patch ([868419a](https://github.com/Jl4cTuk/morphe-patches/commit/868419ab6243a927f2da71abe69058069dd470a8))
+
 ## 1.0.0 (2026-07-18)
 
 ### ✨ New Features

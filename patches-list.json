@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.0",
+  "version": "1.1.0-dev.1",
   "patches": [
     {
       "name": "Disable Mine redesign",
@@ -105,6 +105,92 @@
         }
       ],
       "options": []
+    },
+    {
+      "name": "Remove Ozon ads",
+      "description": "Removes Ozon ad widgets, banner carousels, video ads, and PDP promo blocks.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "19.26.0",
+              "versionCodes": {
+                "ARM64_V8A": 2694,
+                "ARMEABI_V7A": 2694,
+                "X86_64": 2694,
+                "X86": 2694
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            },
+            {
+              "version": "19.22.0",
+              "versionCodes": {
+                "ARM64_V8A": 2687,
+                "ARMEABI_V7A": 2687,
+                "X86_64": 2687,
+                "X86": 2687
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            },
+            {
+              "version": "19.16.0",
+              "versionCodes": {
+                "ARM64_V8A": 2677,
+                "ARMEABI_V7A": 2677,
+                "X86_64": 2677,
+                "X86": 2677
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            },
+            {
+              "version": "18.37.0",
+              "versionCodes": {
+                "ARM64_V8A": 2613,
+                "ARMEABI_V7A": 2613,
+                "X86_64": 2613,
+                "X86": 2613
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            },
+            {
+              "version": null,
+              "versionCodes": null,
+              "isExperimental": true,
+              "minSdk": 26,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "hideRecommendationGrids",
+          "title": "Hide recommendation grids",
+          "description": "Removes recommendation grids from product, cart, profile, and favorites screens.",
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": true,
+          "values": null
+        }
+      ]
     },
     {
       "name": "Skip update auth",
