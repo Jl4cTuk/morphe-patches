@@ -1,3 +1,9 @@
+## [1.2.0-dev.7](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.6...v1.2.0-dev.7) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* prevent RuStore crash with analytics disabled ([1d05f95](https://github.com/Jl4cTuk/morphe-patches/commit/1d05f95e844b369f6e52a1e71ffea0b7cd78713f))
+
 ## [1.2.0-dev.6](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.5...v1.2.0-dev.6) (2026-07-21)
 
 ### 🐛 Bug Fixes
