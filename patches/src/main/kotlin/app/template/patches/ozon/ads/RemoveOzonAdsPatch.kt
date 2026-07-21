@@ -46,8 +46,10 @@ private const val OZON_OBJECT_GRID_ONE_SINGLE_ITEM_BANNER_VIEW_MAPPER =
     "Lru/ozon/app/android/universalwidgets/widgets/uw/old/uobject/gridone/singleitem/" +
         "UniversalObjectGridOneSingleItemBannerViewMapper;"
 private const val OZON_OBJECT_GRID_ONE_LAYOUT = "res/layout/item_uobject_grid_one.xml"
-private const val OZON_FRESH_TAG_LIST_PREFIX =
-    "Lru/ozon/app/android/fresh/unsorted/widgets/tagList/"
+private const val OZON_FRESH_TAG_LIST_VIEW_HOLDER =
+    "Lru/ozon/app/android/fresh/unsorted/widgets/tagList/presentation/TagListViewHolder;"
+private const val OZON_FRESH_TAG_LIST_VIEW =
+    "Lru/ozon/app/android/fresh/unsorted/widgets/tagList/presentation/TagListView;"
 private const val OZON_SEARCH_EXPANDABLE_CELLS_PREFIX =
     "Lru/ozon/app/android/search/widgets/expandableCells/"
 private const val OZON_SEARCH_WARLOCK_VIEW_MODEL =
@@ -129,6 +131,13 @@ private fun Method.isObjectGridOneBannerCanMapMethod(classType: String) =
         name == "canMap" &&
         returnType == "Z" &&
         parameterTypes.size == 1 &&
+        hasImplementation()
+
+private fun Method.isFreshTagListBindMethod(classType: String) =
+    classType == OZON_FRESH_TAG_LIST_VIEW_HOLDER &&
+        name == "bind" &&
+        returnType == "V" &&
+        parameterTypes.size == 2 &&
         hasImplementation()
 
 private fun Method.isSearchWarlockRequestMethod(classType: String) =
@@ -274,7 +283,7 @@ val removeOzonAdsPatch = bytecodePatch(
         var patchedTileGrid3BindMethods = 0
         var patchedTileGrid3ParseMethods = 0
         var patchedObjectGridOneBannerCanMapMethods = 0
-        var patchedFreshTagListMapMethods = 0
+        var patchedFreshTagListBindMethods = 0
         var patchedSearchExpandableCanMapMethods = 0
         var patchedSearchExpandableListMapMethods = 0
         var patchedSearchExpandableBindMethods = 0
@@ -583,18 +592,24 @@ val removeOzonAdsPatch = bytecodePatch(
                     }
                 }
 
-                classType.startsWith(OZON_FRESH_TAG_LIST_PREFIX) -> {
+                classType == OZON_FRESH_TAG_LIST_VIEW_HOLDER -> {
                     mutableClassDefBy(classDef).methods.forEach { method ->
-                        if (method.isListMapMethod()) {
+                        if (method.isFreshTagListBindMethod(classType)) {
                             method.addInstructions(
                                 0,
                                 """
-                                    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
-                                    move-result-object p0
-                                    return-object p0
+                                    move-object/from16 v0, p0
+                                    iget-object v0, v0, $OZON_FRESH_TAG_LIST_VIEW_HOLDER->view:$OZON_FRESH_TAG_LIST_VIEW
+                                    invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
+                                    move-result-object v1
+                                    if-eqz v1, :ozon_tag_list_hidden
+                                    const/4 v0, 0x0
+                                    iput v0, v1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
+                                    :ozon_tag_list_hidden
+                                    return-void
                                 """,
                             )
-                            patchedFreshTagListMapMethods++
+                            patchedFreshTagListBindMethods++
                         }
                     }
                 }
@@ -1022,7 +1037,7 @@ val removeOzonAdsPatch = bytecodePatch(
             patchedTileGrid3BindMethods == 0 &&
             patchedTileGrid3ParseMethods == 0 &&
             patchedObjectGridOneBannerCanMapMethods == 0 &&
-            patchedFreshTagListMapMethods == 0 &&
+            patchedFreshTagListBindMethods == 0 &&
             patchedSearchExpandableCanMapMethods == 0 &&
             patchedSearchExpandableListMapMethods == 0 &&
             patchedSearchExpandableBindMethods == 0 &&
@@ -1067,7 +1082,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 "$patchedTileGrid3BindMethods tile grid3 bind methods, " +
                 "$patchedTileGrid3ParseMethods tile grid3 parse methods, " +
                 "$patchedObjectGridOneBannerCanMapMethods object grid1 banner canMap methods, " +
-                "$patchedFreshTagListMapMethods fresh tag-list map methods, " +
+                "$patchedFreshTagListBindMethods fresh tag-list bind methods, " +
                 "$patchedSearchExpandableCanMapMethods search expandable canMap methods, " +
                 "$patchedSearchExpandableListMapMethods search expandable list map methods, and " +
                 "$patchedSearchExpandableBindMethods search expandable bind methods, " +
