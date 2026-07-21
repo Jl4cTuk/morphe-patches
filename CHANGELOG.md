@@ -1,3 +1,9 @@
+## [1.2.0-dev.10](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.9...v1.2.0-dev.10) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* hide Ozon account promo banner ([56164e1](https://github.com/Jl4cTuk/morphe-patches/commit/56164e11d35b7b69dfbcbdea49fd0db4e54c4d21))
+
 ## [1.2.0-dev.9](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.8...v1.2.0-dev.9) (2026-07-21)
 
 ### 🐛 Bug Fixes
