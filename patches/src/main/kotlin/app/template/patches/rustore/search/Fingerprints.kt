@@ -3,8 +3,8 @@ package app.template.patches.rustore.search
 import app.morphe.patcher.Fingerprint
 
 /**
- * Matches `SearchZeroState.Content`, whose first two fields contain the
- * category recommendations and trends shown before a search query is entered.
+ * Matches `SearchZeroState.Content`, whose first, second, and fourth fields
+ * contain recommendations shown before a search query is entered.
  */
 object SearchZeroContentConstructorFingerprint : Fingerprint(
     definingClass = "Lhb2/d\$a;",

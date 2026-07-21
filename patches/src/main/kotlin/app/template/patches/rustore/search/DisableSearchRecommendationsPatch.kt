@@ -7,7 +7,7 @@ import app.template.patches.rustore.shared.Constants.COMPATIBILITY_RUSTORE
 @Suppress("unused")
 val disableSearchRecommendationsPatch = bytecodePatch(
     name = "Disable search recommendations",
-    description = "Removes the Trending and Games sections from search.",
+    description = "Removes the Trending, Games, and Frequently searched sections from search.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_RUSTORE)
@@ -18,6 +18,7 @@ val disableSearchRecommendationsPatch = bytecodePatch(
             """
                 const/4 p1, 0x0
                 const/4 p2, 0x0
+                const/4 p4, 0x0
             """,
         )
     }
