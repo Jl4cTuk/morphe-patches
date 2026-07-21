@@ -4,11 +4,8 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.option
-import app.morphe.patcher.patch.resourcePatch
 import app.template.patches.ozon.shared.Constants.COMPATIBILITY_OZON
 import com.android.tools.smali.dexlib2.iface.Method
-import org.w3c.dom.Element
-import java.io.FileNotFoundException
 
 private const val OZON_AD_WIDGETS_PREFIX = "Lru/ozon/app/android/ads/widgets/"
 private const val OZON_INSTALLMENT_WIDGETS_PREFIX = "Lru/ozon/app/android/pdp/widgets/installmentPurchase/"
@@ -39,23 +36,6 @@ private const val OZON_TILE_GRID3_PREFIX =
     "Lru/ozon/app/android/universalwidgets/widgets/uw/sku/tilegrid3/"
 private const val OZON_TILE_GRID3_CONFIG =
     "Lru/ozon/app/android/universalwidgets/widgets/uw/sku/tilegrid3/data/TileGrid3Config;"
-private const val OZON_OBJECT_GRID_ONE_BANNER_VIEW_MAPPER =
-    "Lru/ozon/app/android/universalwidgets/widgets/uw/old/uobject/gridone/" +
-        "UniversalObjectGridOneBannerViewMapper;"
-private const val OZON_OBJECT_GRID_ONE_SINGLE_ITEM_BANNER_VIEW_MAPPER =
-    "Lru/ozon/app/android/universalwidgets/widgets/uw/old/uobject/gridone/singleitem/" +
-        "UniversalObjectGridOneSingleItemBannerViewMapper;"
-private const val OZON_OBJECT_GRID_ONE_LAYOUT = "res/layout/item_uobject_grid_one.xml"
-private val OZON_HOME_TAG_LIST_MAPPERS = setOf(
-    "Lru/ozon/app/android/common/taglist/taglistv2/presentation/scrollingtaglist/" +
-        "ScrollingTagListWidgetViewMapper\$mapper\$1;",
-    "Lru/ozon/app/android/common/taglist/taglistv3/presentation/scrolling/" +
-        "ScrollingTagListV3ViewMapper\$mapper\$1;",
-)
-private val OZON_HOME_TAG_LIST_DTOS = setOf(
-    "Lru/ozon/app/android/common/taglist/taglistv2/data/TagListDTO;",
-    "Lru/ozon/app/android/common/taglist/taglistv3/data/TagListV3DTO;",
-)
 private const val OZON_SEARCH_EXPANDABLE_CELLS_PREFIX =
     "Lru/ozon/app/android/search/widgets/expandableCells/"
 private const val OZON_SEARCH_WARLOCK_VIEW_MODEL =
@@ -79,8 +59,6 @@ private const val OZON_PROFILE_GRID_CONTAINER_MARKER = "pagination_app_my_accoun
 private const val OZON_PERSONAL_TILE_GRID_MARKER = "personalTitle=true"
 private const val OZON_PERSONAL_TILE_GRID_JSON_MARKER = "\\\"personalTitle\\\":true"
 private const val OZON_FAVORITES_GRID_CONTAINER_MARKER = "recoms_pagination_favorites_app"
-private const val OZON_HOME_COLLECTIONS_TAG_MARKER = "Подборки"
-private const val OZON_HOME_HASHTAG_MARKER = "#"
 private const val OZON_SEARCH_WARLOCK_MARKER = "generic-warlock"
 private const val OZON_SELECT_CELL_MARKER = "FIRST15"
 private const val OZON_SELECT_TITLE_MARKER = "Ozon Селект"
@@ -129,24 +107,6 @@ private fun Method.isTileGrid2ParseMethod(classType: String) =
         name == "parse" &&
         returnType == "Ljava/util/List;" &&
         parameterTypes.size == 1 &&
-        hasImplementation()
-
-private fun Method.isObjectGridOneBannerCanMapMethod(classType: String) =
-    (
-        classType == OZON_OBJECT_GRID_ONE_BANNER_VIEW_MAPPER ||
-            classType == OZON_OBJECT_GRID_ONE_SINGLE_ITEM_BANNER_VIEW_MAPPER
-    ) &&
-        name == "canMap" &&
-        returnType == "Z" &&
-        parameterTypes.size == 1 &&
-        hasImplementation()
-
-private fun Method.isHomeTagListMapMethod(classType: String) =
-    classType in OZON_HOME_TAG_LIST_MAPPERS &&
-        name == "invoke" &&
-        returnType == "Ljava/util/List;" &&
-        parameterTypes.size == 2 &&
-        parameterTypes[0].toString() in OZON_HOME_TAG_LIST_DTOS &&
         hasImplementation()
 
 private fun Method.isSearchWarlockRequestMethod(classType: String) =
@@ -215,35 +175,6 @@ private fun Method.isShellNavbarBgSetBackground(classType: String) =
         parameterTypes[0].toString() == "Landroid/graphics/drawable/Drawable;" &&
         hasImplementation()
 
-private fun Element.hideWidgetRoot() {
-    setAttribute("android:layout_width", "0dp")
-    setAttribute("android:layout_height", "0dp")
-    setAttribute("android:minWidth", "0dp")
-    setAttribute("android:minHeight", "0dp")
-    setAttribute("android:visibility", "gone")
-}
-
-private val removeOzonAdResourcesPatch = resourcePatch {
-    compatibleWith(COMPATIBILITY_OZON)
-
-    execute {
-        // The ad layout is mandatory: if it's gone the app changed and the patch is
-        // stale. Older builds lacking it are out of scope (we only patch current).
-        try {
-            document(OZON_OBJECT_GRID_ONE_LAYOUT).use { document ->
-                document.documentElement.hideWidgetRoot()
-            }
-        } catch (_: FileNotFoundException) {
-            throw PatchException(
-                "Remove Ozon ads: expected ad layout not found ($OZON_OBJECT_GRID_ONE_LAYOUT) — " +
-                    "the app layout changed, update RemoveOzonAdsPatch.",
-            )
-        }
-
-        println("Remove Ozon ads resources: hid object grid1 layout (required surface present).")
-    }
-}
-
 @Suppress("unused")
 val removeOzonAdsPatch = bytecodePatch(
     name = "Remove Ozon ads",
@@ -251,7 +182,6 @@ val removeOzonAdsPatch = bytecodePatch(
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_OZON)
-    dependsOn(removeOzonAdResourcesPatch)
 
     val hideRecommendationGrids by option<Boolean>(
         key = "hideRecommendationGrids",
@@ -291,8 +221,6 @@ val removeOzonAdsPatch = bytecodePatch(
         var patchedTileGrid3ListMapMethods = 0
         var patchedTileGrid3BindMethods = 0
         var patchedTileGrid3ParseMethods = 0
-        var patchedObjectGridOneBannerCanMapMethods = 0
-        var patchedHomeTagListMapMethods = 0
         var patchedSearchExpandableCanMapMethods = 0
         var patchedSearchExpandableListMapMethods = 0
         var patchedSearchExpandableBindMethods = 0
@@ -601,33 +529,6 @@ val removeOzonAdsPatch = bytecodePatch(
                     }
                 }
 
-                classType in OZON_HOME_TAG_LIST_MAPPERS -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
-                        if (method.isHomeTagListMapMethod(classType)) {
-                            method.addInstructions(
-                                0,
-                                """
-                                    invoke-virtual/range {p1 .. p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
-                                    move-result-object v0
-                                    const-string v1, "$OZON_HOME_COLLECTIONS_TAG_MARKER"
-                                    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-                                    move-result v1
-                                    if-eqz v1, :ozon_home_tag_list_continue
-                                    const-string v1, "$OZON_HOME_HASHTAG_MARKER"
-                                    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-                                    move-result v1
-                                    if-eqz v1, :ozon_home_tag_list_continue
-                                    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
-                                    move-result-object v0
-                                    return-object v0
-                                    :ozon_home_tag_list_continue
-                                """,
-                            )
-                            patchedHomeTagListMapMethods++
-                        }
-                    }
-                }
-
                 shouldHideRecommendationGrids && classType.startsWith(OZON_REC_SHELF_PREFIX) -> {
                     mutableClassDefBy(classDef).methods.forEach { method ->
                         when {
@@ -890,24 +791,6 @@ val removeOzonAdsPatch = bytecodePatch(
                     }
                 }
 
-                (
-                    classType == OZON_OBJECT_GRID_ONE_BANNER_VIEW_MAPPER ||
-                        classType == OZON_OBJECT_GRID_ONE_SINGLE_ITEM_BANNER_VIEW_MAPPER
-                ) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
-                        if (method.isObjectGridOneBannerCanMapMethod(classType)) {
-                            method.addInstructions(
-                                0,
-                                """
-                                    const/16 p0, 0x0
-                                    return p0
-                                """,
-                            )
-                            patchedObjectGridOneBannerCanMapMethods++
-                        }
-                    }
-                }
-
                 classType.startsWith(OZON_TILE_GRID3_PREFIX) -> {
                     mutableClassDefBy(classDef).methods.forEach { method ->
                         when {
@@ -1050,8 +933,6 @@ val removeOzonAdsPatch = bytecodePatch(
             patchedTileGrid3ListMapMethods == 0 &&
             patchedTileGrid3BindMethods == 0 &&
             patchedTileGrid3ParseMethods == 0 &&
-            patchedObjectGridOneBannerCanMapMethods == 0 &&
-            patchedHomeTagListMapMethods == 0 &&
             patchedSearchExpandableCanMapMethods == 0 &&
             patchedSearchExpandableListMapMethods == 0 &&
             patchedSearchExpandableBindMethods == 0 &&
@@ -1095,8 +976,6 @@ val removeOzonAdsPatch = bytecodePatch(
                 "$patchedTileGrid3ListMapMethods tile grid3 list map methods, " +
                 "$patchedTileGrid3BindMethods tile grid3 bind methods, " +
                 "$patchedTileGrid3ParseMethods tile grid3 parse methods, " +
-                "$patchedObjectGridOneBannerCanMapMethods object grid1 banner canMap methods, " +
-                "$patchedHomeTagListMapMethods home tag-list map methods, " +
                 "$patchedSearchExpandableCanMapMethods search expandable canMap methods, " +
                 "$patchedSearchExpandableListMapMethods search expandable list map methods, and " +
                 "$patchedSearchExpandableBindMethods search expandable bind methods, " +
