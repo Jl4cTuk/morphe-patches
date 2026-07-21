@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-21T06:18:53",
-  "description": "## [1.2.0-dev.2](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.1...v1.2.0-dev.2) (2026-07-21)\n\n### ✨ New Features\n\n* disable Ozon lottery popup ([32fea2b](https://github.com/Jl4cTuk/morphe-patches/commit/32fea2bfe896fded3639391cc99910c02d71aae4))\n* hide Ozon account lottery and review feed ([2d75dcd](https://github.com/Jl4cTuk/morphe-patches/commit/2d75dcdf09e09daf4d619ec8a7201ba20408b1a6))\n* hide Ozon Bank ad banner ([65af5c0](https://github.com/Jl4cTuk/morphe-patches/commit/65af5c0aa41f49ccf77457503ced8ff7ff4e2cc6))\n* hide Ozon seller rating prompt ([dda5abf](https://github.com/Jl4cTuk/morphe-patches/commit/dda5abf15cb7c62115a4bf312644b7d56a2707b7))",
-  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.2/patches-1.2.0-dev.2.mpp",
+  "created_at": "2026-07-21T07:29:11",
+  "description": "## [1.2.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.2...v1.2.0-dev.3) (2026-07-21)\n\n### ✨ New Features\n\n* simplify Ozon product prices ([ca379e3](https://github.com/Jl4cTuk/morphe-patches/commit/ca379e3f81361ad6c5d9b62831446efb041bbba6))",
+  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.3/patches-1.2.0-dev.3.mpp",
   "signature_download_url": "",
-  "version": "1.2.0-dev.2"
+  "version": "1.2.0-dev.3"
 }

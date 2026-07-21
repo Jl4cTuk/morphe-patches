@@ -1,3 +1,9 @@
+## [1.2.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.2...v1.2.0-dev.3) (2026-07-21)
+
+### ✨ New Features
+
+* simplify Ozon product prices ([ca379e3](https://github.com/Jl4cTuk/morphe-patches/commit/ca379e3f81361ad6c5d9b62831446efb041bbba6))
+
 ## [1.2.0-dev.2](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.1...v1.2.0-dev.2) (2026-07-21)
 
 ### ✨ New Features
