@@ -9,9 +9,9 @@ Patches for apps I like.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.1.0-dev.2](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.1.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;7 patches total
+> **[v1.1.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.1.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;8 patches total
 <details open>
-<summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
+<summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -26,6 +26,7 @@ Patches for apps I like.
 | [Disable analytics](#disable-analytics) | Disables analytics and tracking in RuStore. |  |
 | [Disable background scan](#disable-background-scan) | Disables the periodic Kaspersky background device scan. |  |
 | [Disable gaming profile](#disable-gaming-profile) | Removes the Game Profile section from the Mine screen, including the button and the usage statistics screen. |  |
+| [Disable search recommendations](#disable-search-recommendations) | Removes the Trending and Games sections from search. |  |
 | [Skip update auth](#skip-update-auth) | Removes the login requirement when updating apps. |  |
 
 </details>

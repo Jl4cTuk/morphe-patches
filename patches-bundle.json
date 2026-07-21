@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-21T04:10:20",
-  "description": "## [1.1.0-dev.2](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0-dev.1...v1.1.0-dev.2) (2026-07-21)\n\n### ✨ New Features\n\n* add RuStore analytics patch ([daef874](https://github.com/Jl4cTuk/morphe-patches/commit/daef874a36b6295518c41e57145133c8e168ba5f))",
-  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.1.0-dev.2/patches-1.1.0-dev.2.mpp",
+  "created_at": "2026-07-21T04:33:07",
+  "description": "## [1.1.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0-dev.2...v1.1.0-dev.3) (2026-07-21)\n\n### ✨ New Features\n\n* add RuStore search cleanup patch ([ca1aab3](https://github.com/Jl4cTuk/morphe-patches/commit/ca1aab3b1429c9e72488439fcf887502bc77c2c0))",
+  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.1.0-dev.3/patches-1.1.0-dev.3.mpp",
   "signature_download_url": "",
-  "version": "1.1.0-dev.2"
+  "version": "1.1.0-dev.3"
 }

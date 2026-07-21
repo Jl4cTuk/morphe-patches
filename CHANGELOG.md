@@ -1,3 +1,9 @@
+## [1.1.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0-dev.2...v1.1.0-dev.3) (2026-07-21)
+
+### ✨ New Features
+
+* add RuStore search cleanup patch ([ca1aab3](https://github.com/Jl4cTuk/morphe-patches/commit/ca1aab3b1429c9e72488439fcf887502bc77c2c0))
+
 ## [1.1.0-dev.2](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0-dev.1...v1.1.0-dev.2) (2026-07-21)
 
 ### ✨ New Features
