@@ -7,6 +7,7 @@ import org.w3c.dom.Element
 import java.util.logging.Logger
 
 private val logger = Logger.getLogger("DisableAnalytics")
+private const val APP_METRICA_API_CLASS = "Lio/appmetrica/analytics/AppMetrica;"
 
 private val disableAnalyticsManifestPatch = resourcePatch {
     execute {
@@ -135,6 +136,23 @@ val disableAnalyticsDependency = bytecodePatch {
     dependsOn(disableAnalyticsManifestPatch)
 
     execute {
+        var appMetricaAppOpenMethods = 0
+        classDefForEach { classDef ->
+            if (classDef.type != APP_METRICA_API_CLASS) return@classDefForEach
+
+            mutableClassDefBy(classDef).methods.forEach { method ->
+                if (
+                    method.name == "reportAppOpen" &&
+                    method.returnType == "V" &&
+                    method.implementation != null
+                ) {
+                    method.addInstructions(0, "return-void")
+                    appMetricaAppOpenMethods++
+                }
+            }
+        }
+        logger.info("AppMetrica reportAppOpen: patched $appMetricaAppOpenMethods methods")
+
         AppMetricaActivateFingerprint.methodOrNull
             ?.addInstructions(0, "return-void")
             .also {
