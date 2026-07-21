@@ -1,3 +1,9 @@
+## [1.2.0-dev.5](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.4...v1.2.0-dev.5) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* remove empty Ozon tag list container ([12eb302](https://github.com/Jl4cTuk/morphe-patches/commit/12eb302083cfddb160a69dc8e80cbd54c5d55090))
+
 ## [1.2.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.3...v1.2.0-dev.4) (2026-07-21)
 
 ### 🐛 Bug Fixes

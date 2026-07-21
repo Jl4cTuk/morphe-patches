@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-21T07:59:32",
-  "description": "## [1.2.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.3...v1.2.0-dev.4) (2026-07-21)\n\n### 🐛 Bug Fixes\n\n* remove remaining Ozon promotional widgets ([a5c4f49](https://github.com/Jl4cTuk/morphe-patches/commit/a5c4f49472ac3e3b2938c169d79260393d376c82))",
-  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.4/patches-1.2.0-dev.4.mpp",
+  "created_at": "2026-07-21T08:17:42",
+  "description": "## [1.2.0-dev.5](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.4...v1.2.0-dev.5) (2026-07-21)\n\n### 🐛 Bug Fixes\n\n* remove empty Ozon tag list container ([12eb302](https://github.com/Jl4cTuk/morphe-patches/commit/12eb302083cfddb160a69dc8e80cbd54c5d55090))",
+  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.5/patches-1.2.0-dev.5.mpp",
   "signature_download_url": "",
-  "version": "1.2.0-dev.4"
+  "version": "1.2.0-dev.5"
 }
