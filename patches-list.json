@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.1.0-dev.4",
+  "version": "1.1.0-dev.5",
   "patches": [
     {
       "name": "Disable Mine redesign",
@@ -163,7 +163,33 @@
     },
     {
       "name": "Hide Featured and Games tabs",
-      "description": "Removes the Featured and Games tabs from the bottom navigation bar.",
+      "description": "Removes the Featured and Games tabs and opens Apps by default.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.vk.store",
+          "name": "RuStore",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0077FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.105.0.2",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide notification buttons",
+      "description": "Removes notification buttons from the search bar and Mine screen.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

@@ -1,3 +1,13 @@
+## [1.1.0-dev.5](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0-dev.4...v1.1.0-dev.5) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* open Apps by default in RuStore ([4d20119](https://github.com/Jl4cTuk/morphe-patches/commit/4d20119061b3032b70ec3dfb07ad0f6fbcd8eebc))
+
+### ✨ New Features
+
+* hide notification buttons in RuStore ([bd80e8d](https://github.com/Jl4cTuk/morphe-patches/commit/bd80e8d83362752781d26bfd49d45e2e71db6732))
+
 ## [1.1.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0-dev.3...v1.1.0-dev.4) (2026-07-21)
 
 ### 🐛 Bug Fixes
