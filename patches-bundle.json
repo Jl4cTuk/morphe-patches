@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-21T10:17:25",
-  "description": "## [1.2.0-dev.7](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.6...v1.2.0-dev.7) (2026-07-21)\n\n### 🐛 Bug Fixes\n\n* prevent RuStore crash with analytics disabled ([1d05f95](https://github.com/Jl4cTuk/morphe-patches/commit/1d05f95e844b369f6e52a1e71ffea0b7cd78713f))",
-  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.7/patches-1.2.0-dev.7.mpp",
+  "created_at": "2026-07-21T10:43:35",
+  "description": "## [1.2.0-dev.8](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.7...v1.2.0-dev.8) (2026-07-21)\n\n### 🐛 Bug Fixes\n\n* hide Ozon home hashtag recommendations ([4aa4d54](https://github.com/Jl4cTuk/morphe-patches/commit/4aa4d54bccc6becc788936dfd8f4f7dc97d7d41a))",
+  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.8/patches-1.2.0-dev.8.mpp",
   "signature_download_url": "",
-  "version": "1.2.0-dev.7"
+  "version": "1.2.0-dev.8"
 }

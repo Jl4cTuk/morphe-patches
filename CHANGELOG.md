@@ -1,3 +1,9 @@
+## [1.2.0-dev.8](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.7...v1.2.0-dev.8) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* hide Ozon home hashtag recommendations ([4aa4d54](https://github.com/Jl4cTuk/morphe-patches/commit/4aa4d54bccc6becc788936dfd8f4f7dc97d7d41a))
+
 ## [1.2.0-dev.7](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.6...v1.2.0-dev.7) (2026-07-21)
 
 ### 🐛 Bug Fixes
