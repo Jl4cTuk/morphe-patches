@@ -21,3 +21,17 @@ object BottomNavigationContainerFingerprint : Fingerprint(
         classDef.sourceFile == "BottomNavigationContainer.kt" && method.implementation != null
     },
 )
+
+/** Matches `RootNavHost`, which selects the app's initial navigation route. */
+object RootNavHostFingerprint : Fingerprint(
+    returnType = "V",
+    parameters = listOf(
+        "Lru/vk/store/feature/navigation/startDestination/api/domain/StartDestination;",
+        "Z",
+        "Landroidx/compose/runtime/a;",
+        "I",
+    ),
+    custom = { method, classDef ->
+        classDef.sourceFile == "RootNavHost.kt" && method.implementation != null
+    },
+)
