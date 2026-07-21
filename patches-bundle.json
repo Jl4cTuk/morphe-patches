@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-21T08:17:42",
-  "description": "## [1.2.0-dev.5](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.4...v1.2.0-dev.5) (2026-07-21)\n\n### 🐛 Bug Fixes\n\n* remove empty Ozon tag list container ([12eb302](https://github.com/Jl4cTuk/morphe-patches/commit/12eb302083cfddb160a69dc8e80cbd54c5d55090))",
-  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.5/patches-1.2.0-dev.5.mpp",
+  "created_at": "2026-07-21T09:55:09",
+  "description": "## [1.2.0-dev.6](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.5...v1.2.0-dev.6) (2026-07-21)\n\n### 🐛 Bug Fixes\n\n* restore Ozon home hashtag filtering ([f93a565](https://github.com/Jl4cTuk/morphe-patches/commit/f93a5657bc58ca60156fa4a6e88966046eea0f3c))",
+  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.6/patches-1.2.0-dev.6.mpp",
   "signature_download_url": "",
-  "version": "1.2.0-dev.5"
+  "version": "1.2.0-dev.6"
 }

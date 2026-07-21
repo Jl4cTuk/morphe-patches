@@ -1,3 +1,9 @@
+## [1.2.0-dev.6](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.5...v1.2.0-dev.6) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* restore Ozon home hashtag filtering ([f93a565](https://github.com/Jl4cTuk/morphe-patches/commit/f93a5657bc58ca60156fa4a6e88966046eea0f3c))
+
 ## [1.2.0-dev.5](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.4...v1.2.0-dev.5) (2026-07-21)
 
 ### 🐛 Bug Fixes
