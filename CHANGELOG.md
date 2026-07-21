@@ -1,3 +1,9 @@
+## [1.2.0-dev.9](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.8...v1.2.0-dev.9) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* remove ineffective Ozon feed patches ([3fdc9b8](https://github.com/Jl4cTuk/morphe-patches/commit/3fdc9b84895125eb01c761b6e64a231c47a5366a))
+
 ## [1.2.0-dev.8](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.7...v1.2.0-dev.8) (2026-07-21)
 
 ### 🐛 Bug Fixes
