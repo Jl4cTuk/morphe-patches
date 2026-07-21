@@ -1,3 +1,9 @@
+## [1.2.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.3...v1.2.0-dev.4) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* remove remaining Ozon promotional widgets ([a5c4f49](https://github.com/Jl4cTuk/morphe-patches/commit/a5c4f49472ac3e3b2938c169d79260393d376c82))
+
 ## [1.2.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.2...v1.2.0-dev.3) (2026-07-21)
 
 ### ✨ New Features
