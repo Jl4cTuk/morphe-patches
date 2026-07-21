@@ -9,9 +9,9 @@ Patches for apps I like.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.1.0](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.1.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
+> **[v1.2.0-dev.1](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.2.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;9 patches total
 <details open>
-<summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;9 patches</summary>
+<summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -22,11 +22,10 @@ Patches for apps I like.
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Disable Mine redesign](#disable-mine-redesign) | Reverts the Mine screen to the classic layout, disabling the redesigned V2/V3 interface. |  |
-| [Disable ads](#disable-ads) | Removes all advertisements from the app. |  |
+| [Disable ads](#disable-ads) | Removes advertisements and recommendations from search. |  |
 | [Disable analytics](#disable-analytics) | Disables analytics and tracking in RuStore. |  |
 | [Disable background scan](#disable-background-scan) | Disables the periodic Kaspersky background device scan. |  |
 | [Disable gaming profile](#disable-gaming-profile) | Removes the Game Profile section from the Mine screen, including the button and the usage statistics screen. |  |
-| [Disable search recommendations](#disable-search-recommendations) | Removes the Trending, Games, and Frequently searched sections from search. |  |
 | [Hide Featured and Games tabs](#hide-featured-and-games-tabs) | Removes the Featured and Games tabs and opens Apps by default. |  |
 | [Hide notification buttons](#hide-notification-buttons) | Removes notification buttons from the search bar and Mine screen. |  |
 | [Skip update auth](#skip-update-auth) | Removes the login requirement when updating apps. |  |

@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.1.0",
+  "version": "1.2.0-dev.1",
   "patches": [
     {
       "name": "Disable Mine redesign",
@@ -30,7 +30,7 @@
     },
     {
       "name": "Disable ads",
-      "description": "Removes all advertisements from the app.",
+      "description": "Removes advertisements and recommendations from search.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -112,32 +112,6 @@
     {
       "name": "Disable gaming profile",
       "description": "Removes the Game Profile section from the Mine screen, including the button and the usage statistics screen.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "ru.vk.store",
-          "name": "RuStore",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#0077FF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.105.0.2",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Disable search recommendations",
-      "description": "Removes the Trending, Games, and Frequently searched sections from search.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

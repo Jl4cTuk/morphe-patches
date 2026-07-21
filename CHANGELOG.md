@@ -1,3 +1,9 @@
+## [1.2.0-dev.1](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0...v1.2.0-dev.1) (2026-07-21)
+
+### ✨ New Features
+
+* merge RuStore search recommendations into ad blocker ([505598f](https://github.com/Jl4cTuk/morphe-patches/commit/505598f294d4c0bc7a3349cccf71196abe104e91))
+
 ## [1.1.0](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0...v1.1.0) (2026-07-21)
 
 ### 🐛 Bug Fixes
