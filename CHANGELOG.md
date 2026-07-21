@@ -1,3 +1,18 @@
+## [1.1.0](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0...v1.1.0) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* open Apps by default in RuStore ([4d20119](https://github.com/Jl4cTuk/morphe-patches/commit/4d20119061b3032b70ec3dfb07ad0f6fbcd8eebc))
+* remove frequently searched section in RuStore ([7da27bf](https://github.com/Jl4cTuk/morphe-patches/commit/7da27bf363873c9b1299c48a08a9dd09d6b96e8f))
+
+### ✨ New Features
+
+* add Ozon ad removal patch ([868419a](https://github.com/Jl4cTuk/morphe-patches/commit/868419ab6243a927f2da71abe69058069dd470a8))
+* add RuStore analytics patch ([daef874](https://github.com/Jl4cTuk/morphe-patches/commit/daef874a36b6295518c41e57145133c8e168ba5f))
+* add RuStore search cleanup patch ([ca1aab3](https://github.com/Jl4cTuk/morphe-patches/commit/ca1aab3b1429c9e72488439fcf887502bc77c2c0))
+* hide Featured and Games tabs in RuStore ([d9fd30c](https://github.com/Jl4cTuk/morphe-patches/commit/d9fd30c0a28ab49cd51a45c542f8dede3f6c5648))
+* hide notification buttons in RuStore ([bd80e8d](https://github.com/Jl4cTuk/morphe-patches/commit/bd80e8d83362752781d26bfd49d45e2e71db6732))
+
 ## [1.1.0-dev.5](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0-dev.4...v1.1.0-dev.5) (2026-07-21)
 
 ### 🐛 Bug Fixes
