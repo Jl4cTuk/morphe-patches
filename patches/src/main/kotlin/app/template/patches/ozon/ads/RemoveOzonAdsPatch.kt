@@ -46,8 +46,16 @@ private const val OZON_OBJECT_GRID_ONE_SINGLE_ITEM_BANNER_VIEW_MAPPER =
     "Lru/ozon/app/android/universalwidgets/widgets/uw/old/uobject/gridone/singleitem/" +
         "UniversalObjectGridOneSingleItemBannerViewMapper;"
 private const val OZON_OBJECT_GRID_ONE_LAYOUT = "res/layout/item_uobject_grid_one.xml"
-private const val OZON_FRESH_TAG_LIST_PREFIX =
-    "Lru/ozon/app/android/fresh/unsorted/widgets/tagList/"
+private val OZON_HOME_TAG_LIST_MAPPERS = setOf(
+    "Lru/ozon/app/android/common/taglist/taglistv2/presentation/scrollingtaglist/" +
+        "ScrollingTagListWidgetViewMapper\$mapper\$1;",
+    "Lru/ozon/app/android/common/taglist/taglistv3/presentation/scrolling/" +
+        "ScrollingTagListV3ViewMapper\$mapper\$1;",
+)
+private val OZON_HOME_TAG_LIST_DTOS = setOf(
+    "Lru/ozon/app/android/common/taglist/taglistv2/data/TagListDTO;",
+    "Lru/ozon/app/android/common/taglist/taglistv3/data/TagListV3DTO;",
+)
 private const val OZON_SEARCH_EXPANDABLE_CELLS_PREFIX =
     "Lru/ozon/app/android/search/widgets/expandableCells/"
 private const val OZON_SEARCH_WARLOCK_VIEW_MODEL =
@@ -71,6 +79,8 @@ private const val OZON_PROFILE_GRID_CONTAINER_MARKER = "pagination_app_my_accoun
 private const val OZON_PERSONAL_TILE_GRID_MARKER = "personalTitle=true"
 private const val OZON_PERSONAL_TILE_GRID_JSON_MARKER = "\\\"personalTitle\\\":true"
 private const val OZON_FAVORITES_GRID_CONTAINER_MARKER = "recoms_pagination_favorites_app"
+private const val OZON_HOME_COLLECTIONS_TAG_MARKER = "Подборки"
+private const val OZON_HOME_HASHTAG_MARKER = "#"
 private const val OZON_SEARCH_WARLOCK_MARKER = "generic-warlock"
 private const val OZON_SELECT_CELL_MARKER = "FIRST15"
 private const val OZON_SELECT_TITLE_MARKER = "Ozon Селект"
@@ -129,6 +139,14 @@ private fun Method.isObjectGridOneBannerCanMapMethod(classType: String) =
         name == "canMap" &&
         returnType == "Z" &&
         parameterTypes.size == 1 &&
+        hasImplementation()
+
+private fun Method.isHomeTagListMapMethod(classType: String) =
+    classType in OZON_HOME_TAG_LIST_MAPPERS &&
+        name == "invoke" &&
+        returnType == "Ljava/util/List;" &&
+        parameterTypes.size == 2 &&
+        parameterTypes[0].toString() in OZON_HOME_TAG_LIST_DTOS &&
         hasImplementation()
 
 private fun Method.isSearchWarlockRequestMethod(classType: String) =
@@ -274,7 +292,7 @@ val removeOzonAdsPatch = bytecodePatch(
         var patchedTileGrid3BindMethods = 0
         var patchedTileGrid3ParseMethods = 0
         var patchedObjectGridOneBannerCanMapMethods = 0
-        var patchedFreshTagListMapMethods = 0
+        var patchedHomeTagListMapMethods = 0
         var patchedSearchExpandableCanMapMethods = 0
         var patchedSearchExpandableListMapMethods = 0
         var patchedSearchExpandableBindMethods = 0
@@ -583,18 +601,29 @@ val removeOzonAdsPatch = bytecodePatch(
                     }
                 }
 
-                classType.startsWith(OZON_FRESH_TAG_LIST_PREFIX) -> {
+                classType in OZON_HOME_TAG_LIST_MAPPERS -> {
                     mutableClassDefBy(classDef).methods.forEach { method ->
-                        if (method.isListMapMethod()) {
+                        if (method.isHomeTagListMapMethod(classType)) {
                             method.addInstructions(
                                 0,
                                 """
+                                    invoke-virtual/range {p1 .. p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+                                    move-result-object v0
+                                    const-string v1, "$OZON_HOME_COLLECTIONS_TAG_MARKER"
+                                    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+                                    move-result v1
+                                    if-eqz v1, :ozon_home_tag_list_continue
+                                    const-string v1, "$OZON_HOME_HASHTAG_MARKER"
+                                    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+                                    move-result v1
+                                    if-eqz v1, :ozon_home_tag_list_continue
                                     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
-                                    move-result-object p0
-                                    return-object p0
+                                    move-result-object v0
+                                    return-object v0
+                                    :ozon_home_tag_list_continue
                                 """,
                             )
-                            patchedFreshTagListMapMethods++
+                            patchedHomeTagListMapMethods++
                         }
                     }
                 }
@@ -1022,7 +1051,7 @@ val removeOzonAdsPatch = bytecodePatch(
             patchedTileGrid3BindMethods == 0 &&
             patchedTileGrid3ParseMethods == 0 &&
             patchedObjectGridOneBannerCanMapMethods == 0 &&
-            patchedFreshTagListMapMethods == 0 &&
+            patchedHomeTagListMapMethods == 0 &&
             patchedSearchExpandableCanMapMethods == 0 &&
             patchedSearchExpandableListMapMethods == 0 &&
             patchedSearchExpandableBindMethods == 0 &&
@@ -1067,7 +1096,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 "$patchedTileGrid3BindMethods tile grid3 bind methods, " +
                 "$patchedTileGrid3ParseMethods tile grid3 parse methods, " +
                 "$patchedObjectGridOneBannerCanMapMethods object grid1 banner canMap methods, " +
-                "$patchedFreshTagListMapMethods fresh tag-list map methods, " +
+                "$patchedHomeTagListMapMethods home tag-list map methods, " +
                 "$patchedSearchExpandableCanMapMethods search expandable canMap methods, " +
                 "$patchedSearchExpandableListMapMethods search expandable list map methods, and " +
                 "$patchedSearchExpandableBindMethods search expandable bind methods, " +
