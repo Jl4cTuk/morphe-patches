@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.2.0-dev.1",
+  "version": "1.2.0-dev.2",
   "patches": [
     {
       "name": "Disable Mine redesign",
@@ -136,6 +136,37 @@
       "options": []
     },
     {
+      "name": "Disable lottery popup",
+      "description": "Prevents the lottery onboarding popup from opening.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "19.26.0",
+              "versionCodes": {
+                "ARM64_V8A": 2694,
+                "ARMEABI_V7A": 2694,
+                "X86_64": 2694,
+                "X86": 2694
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide Featured and Games tabs",
       "description": "Removes the Featured and Games tabs and opens Apps by default.",
       "default": true,
@@ -162,6 +193,68 @@
       "options": []
     },
     {
+      "name": "Hide Ozon Bank ad banner",
+      "description": "Removes the advertising banner carousel from the Ozon Bank screen.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "19.26.0",
+              "versionCodes": {
+                "ARM64_V8A": 2694,
+                "ARMEABI_V7A": 2694,
+                "X86_64": 2694,
+                "X86": 2694
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide account lottery and review feed",
+      "description": "Removes the lottery entry banner and review feed shortcut from the account screen.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "19.26.0",
+              "versionCodes": {
+                "ARM64_V8A": 2694,
+                "ARMEABI_V7A": 2694,
+                "X86_64": 2694,
+                "X86": 2694
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide notification buttons",
       "description": "Removes notification buttons from the search bar and Mine screen.",
       "default": true,
@@ -180,6 +273,37 @@
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide seller rating prompt",
+      "description": "Removes the post-purchase seller rating prompt.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "19.26.0",
+              "versionCodes": {
+                "ARM64_V8A": 2694,
+                "ARMEABI_V7A": 2694,
+                "X86_64": 2694,
+                "X86": 2694
+              },
+              "isExperimental": false,
+              "minSdk": 26,
               "description": null
             }
           ]

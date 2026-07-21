@@ -1,3 +1,12 @@
+## [1.2.0-dev.2](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.1...v1.2.0-dev.2) (2026-07-21)
+
+### ✨ New Features
+
+* disable Ozon lottery popup ([32fea2b](https://github.com/Jl4cTuk/morphe-patches/commit/32fea2bfe896fded3639391cc99910c02d71aae4))
+* hide Ozon account lottery and review feed ([2d75dcd](https://github.com/Jl4cTuk/morphe-patches/commit/2d75dcdf09e09daf4d619ec8a7201ba20408b1a6))
+* hide Ozon Bank ad banner ([65af5c0](https://github.com/Jl4cTuk/morphe-patches/commit/65af5c0aa41f49ccf77457503ced8ff7ff4e2cc6))
+* hide Ozon seller rating prompt ([dda5abf](https://github.com/Jl4cTuk/morphe-patches/commit/dda5abf15cb7c62115a4bf312644b7d56a2707b7))
+
 ## [1.2.0-dev.1](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0...v1.2.0-dev.1) (2026-07-21)
 
 ### ✨ New Features
