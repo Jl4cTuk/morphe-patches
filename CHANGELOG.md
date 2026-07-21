@@ -1,3 +1,9 @@
+## [1.1.0-dev.2](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0-dev.1...v1.1.0-dev.2) (2026-07-21)
+
+### ✨ New Features
+
+* add RuStore analytics patch ([daef874](https://github.com/Jl4cTuk/morphe-patches/commit/daef874a36b6295518c41e57145133c8e168ba5f))
+
 ## [1.1.0-dev.1](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0...v1.1.0-dev.1) (2026-07-19)
 
 ### ✨ New Features
