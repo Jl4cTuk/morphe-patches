@@ -1,3 +1,13 @@
+## [1.1.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0-dev.3...v1.1.0-dev.4) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* remove frequently searched section in RuStore ([7da27bf](https://github.com/Jl4cTuk/morphe-patches/commit/7da27bf363873c9b1299c48a08a9dd09d6b96e8f))
+
+### ✨ New Features
+
+* hide Featured and Games tabs in RuStore ([d9fd30c](https://github.com/Jl4cTuk/morphe-patches/commit/d9fd30c0a28ab49cd51a45c542f8dede3f6c5648))
+
 ## [1.1.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0-dev.2...v1.1.0-dev.3) (2026-07-21)
 
 ### ✨ New Features
