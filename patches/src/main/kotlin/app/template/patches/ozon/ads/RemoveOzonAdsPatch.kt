@@ -15,6 +15,10 @@ private const val OZON_INSTALLMENT_WIDGETS_PREFIX = "Lru/ozon/app/android/pdp/wi
 private const val OZON_INSTALLMENT_V4_PREFIX = "Lru/ozon/app/android/pdp/widgets/installmentPurchaseV4/"
 private const val OZON_INSTALLMENT_V4_DTO =
     "Lru/ozon/app/android/pdp/widgets/installmentPurchaseV4/data/InstallmentPurchaseV4DTO;"
+private const val OZON_INSTALLMENT_V5_PREFIX =
+    "Lru/ozon/app/android/pdp/widgets/installmentPurchaseV5/"
+private const val OZON_PDP_TEST_MOLECULES_PREFIX =
+    "Lru/ozon/app/android/pdp/widgets/pdpTestMoleculesWidget/"
 private const val OZON_REC_SHELF_PREFIX = "Lru/ozon/app/android/fresh/unsorted/widgets/recShelf/"
 private const val OZON_REC_SHELF_VIEW_MODEL =
     "Lru/ozon/app/android/fresh/unsorted/widgets/recShelf/presentation/RecShelfViewModel;"
@@ -36,9 +40,14 @@ private const val OZON_TILE_GRID3_PREFIX =
 private const val OZON_TILE_GRID3_CONFIG =
     "Lru/ozon/app/android/universalwidgets/widgets/uw/sku/tilegrid3/data/TileGrid3Config;"
 private const val OZON_OBJECT_GRID_ONE_BANNER_VIEW_MAPPER =
+    "Lru/ozon/app/android/universalwidgets/widgets/uw/old/uobject/gridone/" +
+        "UniversalObjectGridOneBannerViewMapper;"
+private const val OZON_OBJECT_GRID_ONE_SINGLE_ITEM_BANNER_VIEW_MAPPER =
     "Lru/ozon/app/android/universalwidgets/widgets/uw/old/uobject/gridone/singleitem/" +
         "UniversalObjectGridOneSingleItemBannerViewMapper;"
 private const val OZON_OBJECT_GRID_ONE_LAYOUT = "res/layout/item_uobject_grid_one.xml"
+private const val OZON_FRESH_TAG_LIST_PREFIX =
+    "Lru/ozon/app/android/fresh/unsorted/widgets/tagList/"
 private const val OZON_SEARCH_EXPANDABLE_CELLS_PREFIX =
     "Lru/ozon/app/android/search/widgets/expandableCells/"
 private const val OZON_SEARCH_WARLOCK_VIEW_MODEL =
@@ -113,7 +122,10 @@ private fun Method.isTileGrid2ParseMethod(classType: String) =
         hasImplementation()
 
 private fun Method.isObjectGridOneBannerCanMapMethod(classType: String) =
-    classType == OZON_OBJECT_GRID_ONE_BANNER_VIEW_MAPPER &&
+    (
+        classType == OZON_OBJECT_GRID_ONE_BANNER_VIEW_MAPPER ||
+            classType == OZON_OBJECT_GRID_ONE_SINGLE_ITEM_BANNER_VIEW_MAPPER
+    ) &&
         name == "canMap" &&
         returnType == "Z" &&
         parameterTypes.size == 1 &&
@@ -240,6 +252,8 @@ val removeOzonAdsPatch = bytecodePatch(
         var patchedInstallmentListMapMethods = 0
         var patchedInstallmentBindMethods = 0
         var patchedInstallmentV4ParserMethods = 0
+        var patchedInstallmentV5ListMapMethods = 0
+        var patchedPdpSaleListMapMethods = 0
         var patchedRecShelfCanMapMethods = 0
         var patchedRecShelfListMapMethods = 0
         var patchedRecShelfBindMethods = 0
@@ -260,6 +274,7 @@ val removeOzonAdsPatch = bytecodePatch(
         var patchedTileGrid3BindMethods = 0
         var patchedTileGrid3ParseMethods = 0
         var patchedObjectGridOneBannerCanMapMethods = 0
+        var patchedFreshTagListMapMethods = 0
         var patchedSearchExpandableCanMapMethods = 0
         var patchedSearchExpandableListMapMethods = 0
         var patchedSearchExpandableBindMethods = 0
@@ -280,7 +295,7 @@ val removeOzonAdsPatch = bytecodePatch(
                             method.addInstructions(
                                 0,
                                 """
-                                    invoke-virtual {p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+                                    invoke-virtual/range {p1 .. p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
                                     move-result-object v0
                                     const-string v1, "$OZON_SELECT_CELL_MARKER"
                                     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -291,7 +306,8 @@ val removeOzonAdsPatch = bytecodePatch(
                                     move-result v1
                                     if-eqz v1, :ozon_common_cell_v2_continue
                                     :ozon_common_cell_v2_hide
-                                    iget-object v0, p0, $classType->itemView:Landroid/view/View;
+                                    move-object/from16 v0, p0
+                                    iget-object v0, v0, $classType->itemView:Landroid/view/View;
                                     invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
                                     move-result-object v1
                                     if-eqz v1, :ozon_common_cell_v2_hidden_return
@@ -323,7 +339,7 @@ val removeOzonAdsPatch = bytecodePatch(
                             method.addInstructions(
                                 0,
                                 """
-                                    invoke-virtual {p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+                                    invoke-virtual/range {p1 .. p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
                                     move-result-object v0
                                     const-string v1, "$OZON_SELECT_CELL_MARKER"
                                     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -334,7 +350,7 @@ val removeOzonAdsPatch = bytecodePatch(
                                     move-result v1
                                     if-eqz v1, :ozon_image_title_subtitle_continue
                                     :ozon_image_title_subtitle_hide
-                                    invoke-virtual {p0}, $atomV3Type->getContainerView()Landroid/view/View;
+                                    invoke-virtual/range {p0 .. p0}, $atomV3Type->getContainerView()Landroid/view/View;
                                     move-result-object v0
                                     invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
                                     move-result-object v1
@@ -357,13 +373,14 @@ val removeOzonAdsPatch = bytecodePatch(
                             method.addInstructions(
                                 0,
                                 """
-                                    invoke-virtual {p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+                                    invoke-virtual/range {p1 .. p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
                                     move-result-object v0
                                     const-string v1, "$OZON_SELECT_CELL_MARKER"
                                     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
                                     move-result v0
                                     if-eqz v0, :ozon_cell_v2_continue
-                                    iget-object v0, p0, $classType->itemView:Landroid/view/View;
+                                    move-object/from16 v0, p0
+                                    iget-object v0, v0, $classType->itemView:Landroid/view/View;
                                     invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
                                     move-result-object v1
                                     if-eqz v1, :ozon_cell_v2_hidden_return
@@ -385,7 +402,7 @@ val removeOzonAdsPatch = bytecodePatch(
                             method.addInstructions(
                                 0,
                                 """
-                                    invoke-virtual {p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+                                    invoke-virtual/range {p1 .. p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
                                     move-result-object v0
                                     const-string v1, "$OZON_SEARCH_WARLOCK_MARKER"
                                     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -408,7 +425,7 @@ val removeOzonAdsPatch = bytecodePatch(
                             method.addInstructions(
                                 0,
                                 """
-                                    invoke-virtual {p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+                                    invoke-virtual/range {p1 .. p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
                                     move-result-object v0
                                     const-string v1, "$OZON_SEARCH_WARLOCK_MARKER"
                                     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -432,7 +449,7 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        const/4 p0, 0x0
+                                        const/16 p0, 0x0
                                         return p0
                                     """,
                                 )
@@ -455,12 +472,13 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        iget-object p0, p0, $classType->itemView:Landroid/view/View;
-                                        invoke-virtual {p0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
-                                        move-result-object p1
-                                        if-eqz p1, :ozon_hidden_return
-                                        const/4 p0, 0x0
-                                        iput p0, p1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
+                                        move-object/from16 v0, p0
+                                        iget-object v0, v0, $classType->itemView:Landroid/view/View;
+                                        invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
+                                        move-result-object v1
+                                        if-eqz v1, :ozon_hidden_return
+                                        const/4 v0, 0x0
+                                        iput v0, v1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
                                         :ozon_hidden_return
                                         return-void
                                     """,
@@ -478,7 +496,7 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        const/4 p0, 0x0
+                                        const/16 p0, 0x0
                                         return p0
                                     """,
                                 )
@@ -501,12 +519,13 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        iget-object p0, p0, $classType->itemView:Landroid/view/View;
-                                        invoke-virtual {p0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
-                                        move-result-object p1
-                                        if-eqz p1, :ozon_hidden_return
-                                        const/4 p0, 0x0
-                                        iput p0, p1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
+                                        move-object/from16 v0, p0
+                                        iget-object v0, v0, $classType->itemView:Landroid/view/View;
+                                        invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
+                                        move-result-object v1
+                                        if-eqz v1, :ozon_hidden_return
+                                        const/4 v0, 0x0
+                                        iput v0, v1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
                                         :ozon_hidden_return
                                         return-void
                                     """,
@@ -523,11 +542,59 @@ val removeOzonAdsPatch = bytecodePatch(
                             method.addInstructions(
                                 0,
                                 """
-                                    const/4 p0, 0x0
+                                    const/16 p0, 0x0
                                     return-object p0
                                 """,
                             )
                             patchedInstallmentV4ParserMethods++
+                        }
+                    }
+                }
+
+                classType.startsWith(OZON_INSTALLMENT_V5_PREFIX) -> {
+                    mutableClassDefBy(classDef).methods.forEach { method ->
+                        if (method.isListMapMethod()) {
+                            method.addInstructions(
+                                0,
+                                """
+                                    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
+                                    move-result-object p0
+                                    return-object p0
+                                """,
+                            )
+                            patchedInstallmentV5ListMapMethods++
+                        }
+                    }
+                }
+
+                classType.startsWith(OZON_PDP_TEST_MOLECULES_PREFIX) -> {
+                    mutableClassDefBy(classDef).methods.forEach { method ->
+                        if (method.isListMapMethod()) {
+                            method.addInstructions(
+                                0,
+                                """
+                                    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
+                                    move-result-object p0
+                                    return-object p0
+                                """,
+                            )
+                            patchedPdpSaleListMapMethods++
+                        }
+                    }
+                }
+
+                classType.startsWith(OZON_FRESH_TAG_LIST_PREFIX) -> {
+                    mutableClassDefBy(classDef).methods.forEach { method ->
+                        if (method.isListMapMethod()) {
+                            method.addInstructions(
+                                0,
+                                """
+                                    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
+                                    move-result-object p0
+                                    return-object p0
+                                """,
+                            )
+                            patchedFreshTagListMapMethods++
                         }
                     }
                 }
@@ -539,7 +606,7 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        const/4 p0, 0x0
+                                        const/16 p0, 0x0
                                         return p0
                                     """,
                                 )
@@ -562,12 +629,13 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        iget-object p0, p0, $classType->itemView:Landroid/view/View;
-                                        invoke-virtual {p0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
-                                        move-result-object p1
-                                        if-eqz p1, :ozon_hidden_return
-                                        const/4 p0, 0x0
-                                        iput p0, p1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
+                                        move-object/from16 v0, p0
+                                        iget-object v0, v0, $classType->itemView:Landroid/view/View;
+                                        invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
+                                        move-result-object v1
+                                        if-eqz v1, :ozon_hidden_return
+                                        const/4 v0, 0x0
+                                        iput v0, v1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
                                         :ozon_hidden_return
                                         return-void
                                     """,
@@ -602,12 +670,13 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        iget-object p0, p0, $classType->itemView:Landroid/view/View;
-                                        invoke-virtual {p0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
-                                        move-result-object p1
-                                        if-eqz p1, :ozon_hidden_return
-                                        const/4 p0, 0x0
-                                        iput p0, p1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
+                                        move-object/from16 v0, p0
+                                        iget-object v0, v0, $classType->itemView:Landroid/view/View;
+                                        invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
+                                        move-result-object v1
+                                        if-eqz v1, :ozon_hidden_return
+                                        const/4 v0, 0x0
+                                        iput v0, v1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
                                         :ozon_hidden_return
                                         return-void
                                     """,
@@ -637,12 +706,13 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        iget-object p0, p0, $classType->itemView:Landroid/view/View;
-                                        invoke-virtual {p0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
-                                        move-result-object p1
-                                        if-eqz p1, :ozon_hidden_return
-                                        const/4 p0, 0x0
-                                        iput p0, p1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
+                                        move-object/from16 v0, p0
+                                        iget-object v0, v0, $classType->itemView:Landroid/view/View;
+                                        invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
+                                        move-result-object v1
+                                        if-eqz v1, :ozon_hidden_return
+                                        const/4 v0, 0x0
+                                        iput v0, v1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
                                         :ozon_hidden_return
                                         return-void
                                     """,
@@ -665,10 +735,10 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        invoke-static {p1}, Landroid/view/View${'$'}MeasureSpec;->getSize(I)I
+                                        invoke-static/range {p1 .. p1}, Landroid/view/View${'$'}MeasureSpec;->getSize(I)I
                                         move-result p1
-                                        const/4 p2, 0x1
-                                        invoke-virtual {p0, p1, p2}, Landroid/view/View;->setMeasuredDimension(II)V
+                                        const/16 p2, 0x1
+                                        invoke-virtual/range {p0 .. p2}, Landroid/view/View;->setMeasuredDimension(II)V
                                         return-void
                                     """,
                                 )
@@ -706,12 +776,13 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        iget-object p0, p0, $classType->itemView:Landroid/view/View;
-                                        invoke-virtual {p0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
-                                        move-result-object p1
-                                        if-eqz p1, :ozon_hidden_return
-                                        const/4 p0, 0x0
-                                        iput p0, p1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
+                                        move-object/from16 v0, p0
+                                        iget-object v0, v0, $classType->itemView:Landroid/view/View;
+                                        invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
+                                        move-result-object v1
+                                        if-eqz v1, :ozon_hidden_return
+                                        const/4 v0, 0x0
+                                        iput v0, v1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
                                         :ozon_hidden_return
                                         return-void
                                     """,
@@ -728,7 +799,7 @@ val removeOzonAdsPatch = bytecodePatch(
                             method.addInstructions(
                                 0,
                                 """
-                                    const/4 p0, 0x0
+                                    const/16 p0, 0x0
                                     return p0
                                 """,
                             )
@@ -744,7 +815,7 @@ val removeOzonAdsPatch = bytecodePatch(
                             method.addInstructions(
                                 0,
                                 """
-                                    invoke-virtual {p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+                                    invoke-virtual/range {p1 .. p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
                                     move-result-object v0
                                     const-string v1, "$OZON_PDP_PAGE_TYPE_MARKER"
                                     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -790,13 +861,16 @@ val removeOzonAdsPatch = bytecodePatch(
                     }
                 }
 
-                classType == OZON_OBJECT_GRID_ONE_BANNER_VIEW_MAPPER -> {
+                (
+                    classType == OZON_OBJECT_GRID_ONE_BANNER_VIEW_MAPPER ||
+                        classType == OZON_OBJECT_GRID_ONE_SINGLE_ITEM_BANNER_VIEW_MAPPER
+                ) -> {
                     mutableClassDefBy(classDef).methods.forEach { method ->
                         if (method.isObjectGridOneBannerCanMapMethod(classType)) {
                             method.addInstructions(
                                 0,
                                 """
-                                    const/4 p0, 0x0
+                                    const/16 p0, 0x0
                                     return p0
                                 """,
                             )
@@ -824,7 +898,7 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        const/4 p0, 0x0
+                                        const/16 p0, 0x0
                                         return p0
                                     """,
                                 )
@@ -847,12 +921,13 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        iget-object p0, p0, $classType->itemView:Landroid/view/View;
-                                        invoke-virtual {p0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
-                                        move-result-object p1
-                                        if-eqz p1, :ozon_hidden_return
-                                        const/4 p0, 0x0
-                                        iput p0, p1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
+                                        move-object/from16 v0, p0
+                                        iget-object v0, v0, $classType->itemView:Landroid/view/View;
+                                        invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
+                                        move-result-object v1
+                                        if-eqz v1, :ozon_hidden_return
+                                        const/4 v0, 0x0
+                                        iput v0, v1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
                                         :ozon_hidden_return
                                         return-void
                                     """,
@@ -875,7 +950,7 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        const/4 p0, 0x0
+                                        const/16 p0, 0x0
                                         return p0
                                     """,
                                 )
@@ -898,12 +973,13 @@ val removeOzonAdsPatch = bytecodePatch(
                                 method.addInstructions(
                                     0,
                                     """
-                                        iget-object p0, p0, $classType->itemView:Landroid/view/View;
-                                        invoke-virtual {p0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
-                                        move-result-object p1
-                                        if-eqz p1, :ozon_hidden_return
-                                        const/4 p0, 0x0
-                                        iput p0, p1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
+                                        move-object/from16 v0, p0
+                                        iget-object v0, v0, $classType->itemView:Landroid/view/View;
+                                        invoke-virtual {v0}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup${'$'}LayoutParams;
+                                        move-result-object v1
+                                        if-eqz v1, :ozon_hidden_return
+                                        const/4 v0, 0x0
+                                        iput v0, v1, Landroid/view/ViewGroup${'$'}LayoutParams;->height:I
                                         :ozon_hidden_return
                                         return-void
                                     """,
@@ -924,6 +1000,8 @@ val removeOzonAdsPatch = bytecodePatch(
             patchedInstallmentListMapMethods == 0 &&
             patchedInstallmentBindMethods == 0 &&
             patchedInstallmentV4ParserMethods == 0 &&
+            patchedInstallmentV5ListMapMethods == 0 &&
+            patchedPdpSaleListMapMethods == 0 &&
             patchedRecShelfCanMapMethods == 0 &&
             patchedRecShelfListMapMethods == 0 &&
             patchedRecShelfBindMethods == 0 &&
@@ -944,6 +1022,7 @@ val removeOzonAdsPatch = bytecodePatch(
             patchedTileGrid3BindMethods == 0 &&
             patchedTileGrid3ParseMethods == 0 &&
             patchedObjectGridOneBannerCanMapMethods == 0 &&
+            patchedFreshTagListMapMethods == 0 &&
             patchedSearchExpandableCanMapMethods == 0 &&
             patchedSearchExpandableListMapMethods == 0 &&
             patchedSearchExpandableBindMethods == 0 &&
@@ -966,6 +1045,8 @@ val removeOzonAdsPatch = bytecodePatch(
                 "$patchedInstallmentListMapMethods installment list map methods, " +
                 "$patchedInstallmentBindMethods installment bind methods, " +
                 "$patchedInstallmentV4ParserMethods installment V4 parser methods, " +
+                "$patchedInstallmentV5ListMapMethods installment V5 list map methods, " +
+                "$patchedPdpSaleListMapMethods PDP sale list map methods, " +
                 "$patchedRecShelfCanMapMethods recommendation canMap methods, " +
                 "$patchedRecShelfListMapMethods recommendation list map methods, " +
                 "$patchedRecShelfBindMethods recommendation bind methods, and " +
@@ -986,6 +1067,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 "$patchedTileGrid3BindMethods tile grid3 bind methods, " +
                 "$patchedTileGrid3ParseMethods tile grid3 parse methods, " +
                 "$patchedObjectGridOneBannerCanMapMethods object grid1 banner canMap methods, " +
+                "$patchedFreshTagListMapMethods fresh tag-list map methods, " +
                 "$patchedSearchExpandableCanMapMethods search expandable canMap methods, " +
                 "$patchedSearchExpandableListMapMethods search expandable list map methods, and " +
                 "$patchedSearchExpandableBindMethods search expandable bind methods, " +
