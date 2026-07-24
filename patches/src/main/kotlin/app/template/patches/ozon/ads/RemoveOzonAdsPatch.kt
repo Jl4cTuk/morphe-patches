@@ -4,6 +4,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.option
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 import app.template.patches.ozon.shared.Constants.COMPATIBILITY_OZON_CURRENT
 import com.android.tools.smali.dexlib2.iface.Method
 
@@ -244,9 +245,20 @@ val removeOzonAdsPatch = bytecodePatch(
         classDefForEach { classDef ->
             val classType = classDef.type
 
+            fun patchMethods(
+                predicate: (Method) -> Boolean,
+                transform: (MutableMethod) -> Unit,
+            ) {
+                if (classDef.methods.none(predicate)) return
+
+                mutableClassDefBy(classDef).methods
+                    .filter(predicate)
+                    .forEach(transform)
+            }
+
             when {
                 classType == OZON_PROMO_BANNER_V2_MAPPER -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isPromoBannerV2MapperInvoke(classType) }) { method ->
                         if (method.isPromoBannerV2MapperInvoke(classType)) {
                             method.addInstructions(
                                 0,
@@ -262,7 +274,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType == OZON_COMMON_CELL_V2_VIEW_HOLDER -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isCommonCellV2ViewHolderBind(classType) }) { method ->
                         if (method.isCommonCellV2ViewHolderBind(classType)) {
                             method.addInstructions(
                                 0,
@@ -296,7 +308,13 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType.endsWith(OZON_IMAGE_TITLE_SUBTITLE_CELL_V2_HOLDER_SUFFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({
+                        it.isImageTitleSubtitleCellV2Bind(classType) &&
+                            (
+                                classType.startsWith("Lru/ozon/app/android/") ||
+                                    classType.startsWith("Lru/ozon/uni/")
+                            )
+                    }) { method ->
                         if (method.isImageTitleSubtitleCellV2Bind(classType)) {
                             val atomV3Type = when {
                                 classType.startsWith("Lru/ozon/app/android/") -> {
@@ -305,7 +323,7 @@ val removeOzonAdsPatch = bytecodePatch(
                                 classType.startsWith("Lru/ozon/uni/") -> {
                                     "Lru/ozon/uni/atoms/v3/AtomV3;"
                                 }
-                                else -> return@forEach
+                                else -> error("Unsupported Ozon atom namespace: $classType")
                             }
 
                             method.addInstructions(
@@ -340,7 +358,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType == OZON_CELL_V2_VIEW_HOLDER -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isCellV2ViewHolderBind(classType) }) { method ->
                         if (method.isCellV2ViewHolderBind(classType)) {
                             method.addInstructions(
                                 0,
@@ -369,7 +387,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType == OZON_CELL_LIST_V2_MAPPER -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isCellListV2MapperInvoke(classType) }) { method ->
                         if (method.isCellListV2MapperInvoke(classType)) {
                             method.addInstructions(
                                 0,
@@ -392,7 +410,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType == OZON_DS_ATOMS_MAPPER -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isDesignSystemAtomsMapperInvoke(classType) }) { method ->
                         if (method.isDesignSystemAtomsMapperInvoke(classType)) {
                             method.addInstructions(
                                 0,
@@ -415,7 +433,11 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType.startsWith(OZON_AD_WIDGETS_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({
+                        it.isWidgetCanMapMethod() ||
+                            it.isListMapMethod() ||
+                            it.isViewHolderBindMethod(classType)
+                    }) { method ->
                         when {
                             method.isWidgetCanMapMethod() -> {
                                 method.addInstructions(
@@ -462,7 +484,11 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType.startsWith(OZON_INSTALLMENT_WIDGETS_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({
+                        it.isWidgetCanMapMethod() ||
+                            it.isListMapMethod() ||
+                            it.isViewHolderBindMethod(classType)
+                    }) { method ->
                         when {
                             method.isWidgetCanMapMethod() -> {
                                 method.addInstructions(
@@ -509,7 +535,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType.startsWith(OZON_INSTALLMENT_V4_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isInstallmentV4ParserMethod() }) { method ->
                         if (method.isInstallmentV4ParserMethod()) {
                             method.addInstructions(
                                 0,
@@ -524,7 +550,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType.startsWith(OZON_INSTALLMENT_V5_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isListMapMethod() }) { method ->
                         if (method.isListMapMethod()) {
                             method.addInstructions(
                                 0,
@@ -540,7 +566,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType.startsWith(OZON_PDP_TEST_MOLECULES_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isListMapMethod() }) { method ->
                         if (method.isListMapMethod()) {
                             method.addInstructions(
                                 0,
@@ -556,7 +582,12 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 shouldHideRecommendationGrids && classType.startsWith(OZON_REC_SHELF_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({
+                        it.isWidgetCanMapMethod() ||
+                            it.isListMapMethod() ||
+                            it.isViewHolderBindMethod(classType) ||
+                            it.isRecShelfRequestMethod(classType)
+                    }) { method ->
                         when {
                             method.isWidgetCanMapMethod() -> {
                                 method.addInstructions(
@@ -608,7 +639,10 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 shouldHideRecommendationGrids && classType.startsWith(OZON_CROSS_SALE_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({
+                        it.isListMapMethod() ||
+                            it.isViewHolderBindMethod(classType)
+                    }) { method ->
                         when {
                             method.isListMapMethod() -> {
                                 method.addInstructions(
@@ -644,7 +678,10 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType.startsWith(OZON_CMS_BANNER_CAROUSEL_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({
+                        it.isListMapMethod() ||
+                            it.isViewHolderBindMethod(classType)
+                    }) { method ->
                         when {
                             method.isListMapMethod() -> {
                                 method.addInstructions(
@@ -680,7 +717,10 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType == OZON_BIG_PROMO_NAVBAR_VIEW -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({
+                        it.isBigPromoNavbarLayoutMethod(classType) ||
+                            it.isBigPromoNavbarMeasureMethod(classType)
+                    }) { method ->
                         when {
                             method.isBigPromoNavbarLayoutMethod(classType) -> {
                                 method.addInstructions(0, "return-void")
@@ -705,7 +745,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType == OZON_SHELL_NAVBAR_BG_VIEW -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isShellNavbarBgSetBackground(classType) }) { method ->
                         if (method.isShellNavbarBgSetBackground(classType)) {
                             method.addInstructions(0, "return-void")
                             patchedShellNavbarBgMethods++
@@ -714,7 +754,10 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType.startsWith(OZON_TILE_SCROLL_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({
+                        it.isListMapMethod() ||
+                            it.isViewHolderBindMethod(classType)
+                    }) { method ->
                         when {
                             method.isListMapMethod() -> {
                                 method.addInstructions(
@@ -750,7 +793,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType == OZON_TILE_GRID2_BANNER_VIEW_MAPPER -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isWidgetCanMapMethod() }) { method ->
                         if (method.isWidgetCanMapMethod()) {
                             method.addInstructions(
                                 0,
@@ -765,7 +808,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 shouldHideRecommendationGrids && classType == OZON_TILE_GRID2_CONFIG -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({ it.isTileGrid2ParseMethod(classType) }) { method ->
                         if (method.isTileGrid2ParseMethod(classType)) {
                             // These server-driven TileGrid2 containers are infinite recommendation grids with headers.
                             method.addInstructions(
@@ -818,7 +861,12 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType.startsWith(OZON_TILE_GRID3_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({
+                        it.isTileGrid3ParseMethod(classType) ||
+                            it.isWidgetCanMapMethod() ||
+                            it.isListMapMethod() ||
+                            it.isViewHolderBindMethod(classType)
+                    }) { method ->
                         when {
                             method.isTileGrid3ParseMethod(classType) -> {
                                 method.addInstructions(
@@ -877,7 +925,12 @@ val removeOzonAdsPatch = bytecodePatch(
                 }
 
                 classType.startsWith(OZON_SEARCH_EXPANDABLE_CELLS_PREFIX) -> {
-                    mutableClassDefBy(classDef).methods.forEach { method ->
+                    patchMethods({
+                        it.isSearchWarlockRequestMethod(classType) ||
+                            it.isWidgetCanMapMethod() ||
+                            it.isListMapMethod() ||
+                            it.isViewHolderBindMethod(classType)
+                    }) { method ->
                         when {
                             method.isSearchWarlockRequestMethod(classType) -> {
                                 method.addInstructions(0, "return-void")
