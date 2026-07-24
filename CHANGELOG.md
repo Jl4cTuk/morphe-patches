@@ -1,3 +1,9 @@
+## [1.2.0-dev.11](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.10...v1.2.0-dev.11) (2026-07-24)
+
+### 🐛 Bug Fixes
+
+* update Ozon patches for 19.27.0 ([3a67073](https://github.com/Jl4cTuk/morphe-patches/commit/3a67073a2fb0edd502792a1d2e24f736b1284e1f))
+
 ## [1.2.0-dev.10](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.9...v1.2.0-dev.10) (2026-07-21)
 
 ### 🐛 Bug Fixes
