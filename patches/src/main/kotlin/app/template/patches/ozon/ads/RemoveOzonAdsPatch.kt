@@ -4,7 +4,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.option
-import app.template.patches.ozon.shared.Constants.COMPATIBILITY_OZON
+import app.template.patches.ozon.shared.Constants.COMPATIBILITY_OZON_CURRENT
 import com.android.tools.smali.dexlib2.iface.Method
 
 private const val OZON_AD_WIDGETS_PREFIX = "Lru/ozon/app/android/ads/widgets/"
@@ -190,7 +190,7 @@ val removeOzonAdsPatch = bytecodePatch(
     description = "Removes Ozon ad widgets, banner carousels, video ads, and PDP promo blocks.",
     default = true,
 ) {
-    compatibleWith(COMPATIBILITY_OZON)
+    compatibleWith(COMPATIBILITY_OZON_CURRENT)
 
     val hideRecommendationGrids by option<Boolean>(
         key = "hideRecommendationGrids",

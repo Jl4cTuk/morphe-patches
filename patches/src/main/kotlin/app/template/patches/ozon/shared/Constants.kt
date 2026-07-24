@@ -14,42 +14,8 @@ internal object Constants {
         appIconColor = 0x005BFF,
         targets = listOf(
             AppTarget(
-                version = "19.26.0",
-                versionCode = 2694,
-                minSdk = 26,
-            ),
-        ),
-    )
-
-    val COMPATIBILITY_OZON = Compatibility(
-        name = "Ozon",
-        packageName = PACKAGE_NAME,
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0x005BFF,
-        targets = listOf(
-            AppTarget(
-                version = "19.26.0",
-                versionCode = 2694,
-                minSdk = 26,
-            ),
-            AppTarget(
-                version = "19.22.0",
-                versionCode = 2687,
-                minSdk = 26,
-            ),
-            AppTarget(
-                version = "19.16.0",
-                versionCode = 2677,
-                minSdk = 26,
-            ),
-            AppTarget(
-                version = "18.37.0",
-                versionCode = 2613,
-                minSdk = 26,
-            ),
-            AppTarget(
-                version = null,
-                isExperimental = true,
+                version = "19.27.0",
+                versionCode = 2697,
                 minSdk = 26,
             ),
         ),
