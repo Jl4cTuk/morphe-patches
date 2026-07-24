@@ -1,3 +1,9 @@
+## [1.2.0-dev.13](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.12...v1.2.0-dev.13) (2026-07-24)
+
+### 🐛 Bug Fixes
+
+* remove Ozon floating and profile ads ([20e110f](https://github.com/Jl4cTuk/morphe-patches/commit/20e110ffdc93aec01fd8cb1541096ada1bd56227))
+
 ## [1.2.0-dev.12](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.11...v1.2.0-dev.12) (2026-07-24)
 
 ### 🐛 Bug Fixes

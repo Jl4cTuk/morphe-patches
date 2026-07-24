@@ -9,7 +9,7 @@ Patches for apps I like.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.2.0-dev.12](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.2.0-dev.12)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
+> **[v1.2.0-dev.13](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.2.0-dev.13)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
 <details open>
 <summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
 <br>
@@ -47,7 +47,7 @@ Patches for apps I like.
 | [Hide Ozon Bank ad banner](#hide-ozon-bank-ad-banner) | Removes the advertising banner carousel from the Ozon Bank screen. |  |
 | [Hide account lottery and review feed](#hide-account-lottery-and-review-feed) | Removes the lottery entry banner and review feed shortcut from the account screen. |  |
 | [Hide seller rating prompt](#hide-seller-rating-prompt) | Removes the post-purchase seller rating prompt. |  |
-| [Remove Ozon ads](#remove-ozon-ads) | Removes Ozon ad widgets, banner carousels, video ads, and PDP promo blocks. | • Hide recommendation grids |
+| [Remove Ozon ads](#remove-ozon-ads) | Removes Ozon ad widgets, floating promotions, banner carousels, and PDP promo blocks. | • Hide recommendation grids |
 | [Show final prices only](#show-final-prices-only) | Hides crossed-out prices and discount percentages while preserving the current price details. |  |
 
 </details>

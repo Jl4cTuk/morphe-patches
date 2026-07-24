@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-24T18:18:44",
-  "description": "## [1.2.0-dev.12](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.11...v1.2.0-dev.12) (2026-07-24)\n\n### 🐛 Bug Fixes\n\n* prevent Ozon startup crash after patching ([c55d0aa](https://github.com/Jl4cTuk/morphe-patches/commit/c55d0aab78d9172f007d9f664bae25cb42e8af64))",
-  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.12/patches-1.2.0-dev.12.mpp",
+  "created_at": "2026-07-24T21:35:35",
+  "description": "## [1.2.0-dev.13](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.12...v1.2.0-dev.13) (2026-07-24)\n\n### 🐛 Bug Fixes\n\n* remove Ozon floating and profile ads ([20e110f](https://github.com/Jl4cTuk/morphe-patches/commit/20e110ffdc93aec01fd8cb1541096ada1bd56227))",
+  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.13/patches-1.2.0-dev.13.mpp",
   "signature_download_url": "",
-  "version": "1.2.0-dev.12"
+  "version": "1.2.0-dev.13"
 }
