@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-24T17:55:41",
-  "description": "## [1.2.0-dev.11](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.10...v1.2.0-dev.11) (2026-07-24)\n\n### 🐛 Bug Fixes\n\n* update Ozon patches for 19.27.0 ([3a67073](https://github.com/Jl4cTuk/morphe-patches/commit/3a67073a2fb0edd502792a1d2e24f736b1284e1f))",
-  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.11/patches-1.2.0-dev.11.mpp",
+  "created_at": "2026-07-24T18:18:44",
+  "description": "## [1.2.0-dev.12](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.11...v1.2.0-dev.12) (2026-07-24)\n\n### 🐛 Bug Fixes\n\n* prevent Ozon startup crash after patching ([c55d0aa](https://github.com/Jl4cTuk/morphe-patches/commit/c55d0aab78d9172f007d9f664bae25cb42e8af64))",
+  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.12/patches-1.2.0-dev.12.mpp",
   "signature_download_url": "",
-  "version": "1.2.0-dev.11"
+  "version": "1.2.0-dev.12"
 }

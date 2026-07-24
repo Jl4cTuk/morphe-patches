@@ -1,3 +1,9 @@
+## [1.2.0-dev.12](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.11...v1.2.0-dev.12) (2026-07-24)
+
+### 🐛 Bug Fixes
+
+* prevent Ozon startup crash after patching ([c55d0aa](https://github.com/Jl4cTuk/morphe-patches/commit/c55d0aab78d9172f007d9f664bae25cb42e8af64))
+
 ## [1.2.0-dev.11](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.10...v1.2.0-dev.11) (2026-07-24)
 
 ### 🐛 Bug Fixes
