@@ -7,35 +7,15 @@ import app.morphe.patcher.patch.Compatibility
 internal object Constants {
     const val PACKAGE_NAME = "ru.ozon.app.android"
 
-    val COMPATIBILITY_OZON = Compatibility(
+    val COMPATIBILITY_OZON_CURRENT = Compatibility(
         name = "Ozon",
         packageName = PACKAGE_NAME,
         apkFileType = ApkFileType.APK,
         appIconColor = 0x005BFF,
         targets = listOf(
             AppTarget(
-                version = "19.26.0",
-                versionCode = 2694,
-                minSdk = 26,
-            ),
-            AppTarget(
-                version = "19.22.0",
-                versionCode = 2687,
-                minSdk = 26,
-            ),
-            AppTarget(
-                version = "19.16.0",
-                versionCode = 2677,
-                minSdk = 26,
-            ),
-            AppTarget(
-                version = "18.37.0",
-                versionCode = 2613,
-                minSdk = 26,
-            ),
-            AppTarget(
-                version = null,
-                isExperimental = true,
+                version = "19.27.0",
+                versionCode = 2697,
                 minSdk = 26,
             ),
         ),

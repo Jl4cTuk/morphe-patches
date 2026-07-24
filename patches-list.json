@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.1.0",
+  "version": "1.2.0-dev.13",
   "patches": [
     {
       "name": "Disable Mine redesign",
@@ -30,7 +30,7 @@
     },
     {
       "name": "Disable ads",
-      "description": "Removes all advertisements from the app.",
+      "description": "Removes advertisements and recommendations from search.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -136,24 +136,29 @@
       "options": []
     },
     {
-      "name": "Disable search recommendations",
-      "description": "Removes the Trending, Games, and Frequently searched sections from search.",
+      "name": "Disable lottery popup",
+      "description": "Prevents the lottery onboarding popup from opening.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
         {
-          "packageName": "ru.vk.store",
-          "name": "RuStore",
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
           "description": null,
           "apkFileType": "APK",
-          "appIconColor": "#0077FF",
+          "appIconColor": "#005BFF",
           "signatures": null,
           "targets": [
             {
-              "version": "1.105.0.2",
-              "versionCodes": null,
+              "version": "19.27.0",
+              "versionCodes": {
+                "ARM64_V8A": 2697,
+                "ARMEABI_V7A": 2697,
+                "X86_64": 2697,
+                "X86": 2697
+              },
               "isExperimental": false,
-              "minSdk": null,
+              "minSdk": 26,
               "description": null
             }
           ]
@@ -188,6 +193,68 @@
       "options": []
     },
     {
+      "name": "Hide Ozon Bank ad banner",
+      "description": "Removes the advertising banner carousel from the Ozon Bank screen.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "19.27.0",
+              "versionCodes": {
+                "ARM64_V8A": 2697,
+                "ARMEABI_V7A": 2697,
+                "X86_64": 2697,
+                "X86": 2697
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide account lottery and review feed",
+      "description": "Removes the lottery entry banner and review feed shortcut from the account screen.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "19.27.0",
+              "versionCodes": {
+                "ARM64_V8A": 2697,
+                "ARMEABI_V7A": 2697,
+                "X86_64": 2697,
+                "X86": 2697
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide notification buttons",
       "description": "Removes notification buttons from the search bar and Mine screen.",
       "default": true,
@@ -214,12 +281,10 @@
       "options": []
     },
     {
-      "name": "Remove Ozon ads",
-      "description": "Removes Ozon ad widgets, banner carousels, video ads, and PDP promo blocks.",
+      "name": "Hide seller rating prompt",
+      "description": "Removes the post-purchase seller rating prompt.",
       "default": true,
-      "dependencies": [
-        "ResourcePatch"
-      ],
+      "dependencies": [],
       "compatiblePackages": [
         {
           "packageName": "ru.ozon.app.android",
@@ -230,57 +295,45 @@
           "signatures": null,
           "targets": [
             {
-              "version": "19.26.0",
+              "version": "19.27.0",
               "versionCodes": {
-                "ARM64_V8A": 2694,
-                "ARMEABI_V7A": 2694,
-                "X86_64": 2694,
-                "X86": 2694
+                "ARM64_V8A": 2697,
+                "ARMEABI_V7A": 2697,
+                "X86_64": 2697,
+                "X86": 2697
               },
               "isExperimental": false,
               "minSdk": 26,
               "description": null
-            },
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ozon ads",
+      "description": "Removes Ozon ad widgets, floating promotions, banner carousels, and PDP promo blocks.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
             {
-              "version": "19.22.0",
+              "version": "19.27.0",
               "versionCodes": {
-                "ARM64_V8A": 2687,
-                "ARMEABI_V7A": 2687,
-                "X86_64": 2687,
-                "X86": 2687
+                "ARM64_V8A": 2697,
+                "ARMEABI_V7A": 2697,
+                "X86_64": 2697,
+                "X86": 2697
               },
               "isExperimental": false,
-              "minSdk": 26,
-              "description": null
-            },
-            {
-              "version": "19.16.0",
-              "versionCodes": {
-                "ARM64_V8A": 2677,
-                "ARMEABI_V7A": 2677,
-                "X86_64": 2677,
-                "X86": 2677
-              },
-              "isExperimental": false,
-              "minSdk": 26,
-              "description": null
-            },
-            {
-              "version": "18.37.0",
-              "versionCodes": {
-                "ARM64_V8A": 2613,
-                "ARMEABI_V7A": 2613,
-                "X86_64": 2613,
-                "X86": 2613
-              },
-              "isExperimental": false,
-              "minSdk": 26,
-              "description": null
-            },
-            {
-              "version": null,
-              "versionCodes": null,
-              "isExperimental": true,
               "minSdk": 26,
               "description": null
             }
@@ -298,6 +351,37 @@
           "values": null
         }
       ]
+    },
+    {
+      "name": "Show final prices only",
+      "description": "Hides crossed-out prices and discount percentages while preserving the current price details.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "19.27.0",
+              "versionCodes": {
+                "ARM64_V8A": 2697,
+                "ARMEABI_V7A": 2697,
+                "X86_64": 2697,
+                "X86": 2697
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
     },
     {
       "name": "Skip update auth",

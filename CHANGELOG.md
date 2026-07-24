@@ -1,3 +1,84 @@
+## [1.2.0-dev.13](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.12...v1.2.0-dev.13) (2026-07-24)
+
+### 🐛 Bug Fixes
+
+* remove Ozon floating and profile ads ([20e110f](https://github.com/Jl4cTuk/morphe-patches/commit/20e110ffdc93aec01fd8cb1541096ada1bd56227))
+
+## [1.2.0-dev.12](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.11...v1.2.0-dev.12) (2026-07-24)
+
+### 🐛 Bug Fixes
+
+* prevent Ozon startup crash after patching ([c55d0aa](https://github.com/Jl4cTuk/morphe-patches/commit/c55d0aab78d9172f007d9f664bae25cb42e8af64))
+
+## [1.2.0-dev.11](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.10...v1.2.0-dev.11) (2026-07-24)
+
+### 🐛 Bug Fixes
+
+* update Ozon patches for 19.27.0 ([3a67073](https://github.com/Jl4cTuk/morphe-patches/commit/3a67073a2fb0edd502792a1d2e24f736b1284e1f))
+
+## [1.2.0-dev.10](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.9...v1.2.0-dev.10) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* hide Ozon account promo banner ([56164e1](https://github.com/Jl4cTuk/morphe-patches/commit/56164e11d35b7b69dfbcbdea49fd0db4e54c4d21))
+
+## [1.2.0-dev.9](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.8...v1.2.0-dev.9) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* remove ineffective Ozon feed patches ([3fdc9b8](https://github.com/Jl4cTuk/morphe-patches/commit/3fdc9b84895125eb01c761b6e64a231c47a5366a))
+
+## [1.2.0-dev.8](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.7...v1.2.0-dev.8) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* hide Ozon home hashtag recommendations ([4aa4d54](https://github.com/Jl4cTuk/morphe-patches/commit/4aa4d54bccc6becc788936dfd8f4f7dc97d7d41a))
+
+## [1.2.0-dev.7](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.6...v1.2.0-dev.7) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* prevent RuStore crash with analytics disabled ([1d05f95](https://github.com/Jl4cTuk/morphe-patches/commit/1d05f95e844b369f6e52a1e71ffea0b7cd78713f))
+
+## [1.2.0-dev.6](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.5...v1.2.0-dev.6) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* restore Ozon home hashtag filtering ([f93a565](https://github.com/Jl4cTuk/morphe-patches/commit/f93a5657bc58ca60156fa4a6e88966046eea0f3c))
+
+## [1.2.0-dev.5](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.4...v1.2.0-dev.5) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* remove empty Ozon tag list container ([12eb302](https://github.com/Jl4cTuk/morphe-patches/commit/12eb302083cfddb160a69dc8e80cbd54c5d55090))
+
+## [1.2.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.3...v1.2.0-dev.4) (2026-07-21)
+
+### 🐛 Bug Fixes
+
+* remove remaining Ozon promotional widgets ([a5c4f49](https://github.com/Jl4cTuk/morphe-patches/commit/a5c4f49472ac3e3b2938c169d79260393d376c82))
+
+## [1.2.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.2...v1.2.0-dev.3) (2026-07-21)
+
+### ✨ New Features
+
+* simplify Ozon product prices ([ca379e3](https://github.com/Jl4cTuk/morphe-patches/commit/ca379e3f81361ad6c5d9b62831446efb041bbba6))
+
+## [1.2.0-dev.2](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.1...v1.2.0-dev.2) (2026-07-21)
+
+### ✨ New Features
+
+* disable Ozon lottery popup ([32fea2b](https://github.com/Jl4cTuk/morphe-patches/commit/32fea2bfe896fded3639391cc99910c02d71aae4))
+* hide Ozon account lottery and review feed ([2d75dcd](https://github.com/Jl4cTuk/morphe-patches/commit/2d75dcdf09e09daf4d619ec8a7201ba20408b1a6))
+* hide Ozon Bank ad banner ([65af5c0](https://github.com/Jl4cTuk/morphe-patches/commit/65af5c0aa41f49ccf77457503ced8ff7ff4e2cc6))
+* hide Ozon seller rating prompt ([dda5abf](https://github.com/Jl4cTuk/morphe-patches/commit/dda5abf15cb7c62115a4bf312644b7d56a2707b7))
+
+## [1.2.0-dev.1](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0...v1.2.0-dev.1) (2026-07-21)
+
+### ✨ New Features
+
+* merge RuStore search recommendations into ad blocker ([505598f](https://github.com/Jl4cTuk/morphe-patches/commit/505598f294d4c0bc7a3349cccf71196abe104e91))
+
 ## [1.1.0](https://github.com/Jl4cTuk/morphe-patches/compare/v1.0.0...v1.1.0) (2026-07-21)
 
 ### 🐛 Bug Fixes
