@@ -23,8 +23,12 @@ private const val OZON_REC_SHELF_VIEW_MODEL =
 private const val OZON_CROSS_SALE_PREFIX = "Lru/ozon/app/android/pdp/widgets/crosssale/"
 private const val OZON_CMS_BANNER_CAROUSEL_PREFIX =
     "Lru/ozon/app/android/storefront/widgets/cms/bannercarousel/"
-private const val OZON_PROMO_BANNER_V2_MAPPER =
-    "Lru/ozon/app/android/common/promobanner/core/PromoBannerV2Mapper;"
+private const val OZON_HIGHLIGHT_PRODUCTS_OVERLAY_MAPPER =
+    "Lru/ozon/app/android/marketing/widgets/highlightProducts/core/" +
+        "HighlightProductsOverlayViewMapper;"
+private const val OZON_UOBJECT_GRID_ONE_BANNER_MAPPER =
+    "Lru/ozon/app/android/universalwidgets/widgets/uw/old/uobject/gridone/singleitem/" +
+        "UniversalObjectGridOneSingleItemBannerViewMapper;"
 private const val OZON_BIG_PROMO_NAVBAR_VIEW =
     "Lru/ozon/app/android/marketing/widgets/bigPromoNavbar/presentation/BigPromoNavbarView;"
 private const val OZON_SHELL_NAVBAR_BG_VIEW =
@@ -133,13 +137,6 @@ private fun Method.isCellListV2MapperInvoke(classType: String) =
         parameterTypes.size == 2 &&
         hasImplementation()
 
-private fun Method.isPromoBannerV2MapperInvoke(classType: String) =
-    classType == OZON_PROMO_BANNER_V2_MAPPER &&
-        name == "invoke" &&
-        returnType == "Ljava/util/List;" &&
-        parameterTypes.size == 2 &&
-        hasImplementation()
-
 private fun Method.isCellV2ViewHolderBind(classType: String) =
     classType == OZON_CELL_V2_VIEW_HOLDER &&
         name == "bind" &&
@@ -188,7 +185,7 @@ private fun Method.isShellNavbarBgSetBackground(classType: String) =
 @Suppress("unused")
 val removeOzonAdsPatch = bytecodePatch(
     name = "Remove Ozon ads",
-    description = "Removes Ozon ad widgets, banner carousels, video ads, and PDP promo blocks.",
+    description = "Removes Ozon ad widgets, floating promotions, banner carousels, and PDP promo blocks.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_OZON_CURRENT)
@@ -220,7 +217,8 @@ val removeOzonAdsPatch = bytecodePatch(
         var patchedCrossSaleBindMethods = 0
         var patchedCmsBannerListMapMethods = 0
         var patchedCmsBannerBindMethods = 0
-        var patchedPromoBannerV2MapperMethods = 0
+        var patchedHighlightProductsOverlayCanMapMethods = 0
+        var patchedUObjectGridOneBannerCanMapMethods = 0
         var patchedBigPromoNavbarLayoutMethods = 0
         var patchedBigPromoNavbarMeasureMethods = 0
         var patchedShellNavbarBgMethods = 0
@@ -257,19 +255,29 @@ val removeOzonAdsPatch = bytecodePatch(
             }
 
             when {
-                classType == OZON_PROMO_BANNER_V2_MAPPER -> {
-                    patchMethods({ it.isPromoBannerV2MapperInvoke(classType) }) { method ->
-                        if (method.isPromoBannerV2MapperInvoke(classType)) {
-                            method.addInstructions(
-                                0,
-                                """
-                                    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
-                                    move-result-object p0
-                                    return-object p0
-                                """,
-                            )
-                            patchedPromoBannerV2MapperMethods++
-                        }
+                classType == OZON_HIGHLIGHT_PRODUCTS_OVERLAY_MAPPER -> {
+                    patchMethods({ it.isWidgetCanMapMethod() }) { method ->
+                        method.addInstructions(
+                            0,
+                            """
+                                const/16 p0, 0x0
+                                return p0
+                            """,
+                        )
+                        patchedHighlightProductsOverlayCanMapMethods++
+                    }
+                }
+
+                classType == OZON_UOBJECT_GRID_ONE_BANNER_MAPPER -> {
+                    patchMethods({ it.isWidgetCanMapMethod() }) { method ->
+                        method.addInstructions(
+                            0,
+                            """
+                                const/16 p0, 0x0
+                                return p0
+                            """,
+                        )
+                        patchedUObjectGridOneBannerCanMapMethods++
                     }
                 }
 
@@ -1001,7 +1009,8 @@ val removeOzonAdsPatch = bytecodePatch(
             patchedCrossSaleBindMethods == 0 &&
             patchedCmsBannerListMapMethods == 0 &&
             patchedCmsBannerBindMethods == 0 &&
-            patchedPromoBannerV2MapperMethods == 0 &&
+            patchedHighlightProductsOverlayCanMapMethods == 0 &&
+            patchedUObjectGridOneBannerCanMapMethods == 0 &&
             patchedBigPromoNavbarLayoutMethods == 0 &&
             patchedBigPromoNavbarMeasureMethods == 0 &&
             patchedShellNavbarBgMethods == 0 &&
@@ -1045,7 +1054,8 @@ val removeOzonAdsPatch = bytecodePatch(
                 "$patchedCrossSaleBindMethods cross-sale bind methods, " +
                 "$patchedCmsBannerListMapMethods CMS banner list map methods, and " +
                 "$patchedCmsBannerBindMethods CMS banner bind methods, " +
-                "$patchedPromoBannerV2MapperMethods promo banner V2 mapper methods, " +
+                "$patchedHighlightProductsOverlayCanMapMethods highlight-products overlay canMap methods, " +
+                "$patchedUObjectGridOneBannerCanMapMethods object-grid banner canMap methods, " +
                 "$patchedBigPromoNavbarLayoutMethods big promo navbar layout methods, " +
                 "$patchedBigPromoNavbarMeasureMethods big promo navbar measure methods, " +
                 "$patchedShellNavbarBgMethods shell navbar background methods, " +
