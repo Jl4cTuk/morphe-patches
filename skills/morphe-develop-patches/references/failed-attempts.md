@@ -53,6 +53,15 @@
 - Статус: локальный build/apply подтверждён; alternate build требует повторной
   проверки.
 
+## RuStore 1.106.0.3 — Mine и navigation
+
+- Не использовать: `MainViewState.featureMineRedesignEnabled` больше не
+  читается UI; `ROOT_GRAPH_ROUTE` и hardcoded `tj1/t` descriptors исчезли после
+  R8.
+- Использовать: обнулять boolean в `MineDestination(Z)`; tabs находить по
+  `ShowcaseTab.toString()`, Apps route — через `RecommendationAppsDestination`.
+- Статус: full apply подтверждён, runtime не проверен.
+
 ## Формат новой записи
 
 ```markdown

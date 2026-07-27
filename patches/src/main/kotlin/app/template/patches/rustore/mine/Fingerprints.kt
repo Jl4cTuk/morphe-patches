@@ -3,11 +3,15 @@ package app.template.patches.rustore.mine
 import app.morphe.patcher.Fingerprint
 
 /**
- * Matches the `MainActivity` composable that passes
- * `MainViewState.featureMineRedesignEnabled` to `MineDestination`.
+ * Matches the `MineDestination` content lambda constructor whose boolean
+ * selects between `MineV2Screen` and the classic `MineScreen`.
  */
-object MineDestinationRedesignFlagFingerprint : Fingerprint(
-    definingClass = "Lru/vk/store/app/m;",
-    name = "invoke",
-    returnType = "Ljava/lang/Object;",
+object MineDestinationClassicFlagFingerprint : Fingerprint(
+    name = "<init>",
+    returnType = "V",
+    parameters = listOf("Z"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "MineDestination.kt" &&
+            method.implementation != null
+    },
 )

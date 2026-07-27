@@ -4,36 +4,43 @@ import app.morphe.patcher.Fingerprint
 
 /** Matches `MineV2ViewModel.openGameCenter()`. */
 object MineV2ViewModelOpenGameCenterFingerprint : Fingerprint(
-    definingClass = "Llj1/a9;",
-    name = "q0",
     returnType = "V",
     parameters = emptyList(),
+    strings = listOf("gameProfile.click"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "MineV2ViewModel.kt" &&
+            method.implementation != null
+    },
 )
 
 /** Matches the Game Center button rendered by the V2/V3 Mine screen. */
 object GameCenterV2ButtonComposableFingerprint : Fingerprint(
-    definingClass = "Loc1/r0;",
-    name = "d",
     returnType = "V",
     parameters = listOf(
         "Lkotlin/jvm/functions/Function0;",
         "Landroidx/compose/ui/Modifier;",
-        "Loc1/v;",
+        "L",
         "Landroidx/compose/runtime/a;",
         "I",
     ),
+    custom = { method, classDef ->
+        classDef.sourceFile == "GameCenterV2ButtonWidget.kt" &&
+            method.implementation != null
+    },
 )
 
 /** Matches the Game Center statistics card rendered by the classic Mine screen. */
 object GameCenterV1ButtonComposableFingerprint : Fingerprint(
-    definingClass = "Loc1/t;",
-    name = "e",
     returnType = "V",
     parameters = listOf(
         "Lkotlin/jvm/functions/Function0;",
         "Landroidx/compose/ui/Modifier;",
-        "Loc1/v;",
+        "L",
         "Landroidx/compose/runtime/a;",
         "I",
     ),
+    custom = { method, classDef ->
+        classDef.sourceFile == "GameCenterButtonWidget.kt" &&
+            method.implementation != null
+    },
 )

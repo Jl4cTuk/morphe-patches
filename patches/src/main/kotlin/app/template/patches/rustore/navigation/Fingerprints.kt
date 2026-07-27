@@ -9,11 +9,11 @@ object BottomNavigationContainerFingerprint : Fingerprint(
         "Ljava/util/List;",
         "Ljava/util/Map;",
         "Ljava/lang/String;",
-        "Lyq0/o;",
+        "L",
         "Lkotlin/jvm/functions/Function1;",
         "Lkotlin/jvm/functions/Function1;",
-        "Lb2/k;",
-        "Lb2/k;",
+        "L",
+        "L",
         "Landroidx/compose/runtime/a;",
         "I",
     ),
@@ -26,12 +26,35 @@ object BottomNavigationContainerFingerprint : Fingerprint(
 object RootNavHostFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf(
-        "Lru/vk/store/feature/navigation/startDestination/api/domain/StartDestination;",
+        "L",
         "Z",
+        "L",
         "Landroidx/compose/runtime/a;",
         "I",
     ),
     custom = { method, classDef ->
         classDef.sourceFile == "RootNavHost.kt" && method.implementation != null
+    },
+)
+
+/** Matches the singleton `ShowcaseTab.Featuring` variant. */
+object FeaturedTabToStringFingerprint : Fingerprint(
+    name = "toString",
+    returnType = "Ljava/lang/String;",
+    parameters = emptyList(),
+    strings = listOf("Featuring"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "ShowcaseTab.kt" && method.implementation != null
+    },
+)
+
+/** Matches the stateful `ShowcaseTab.Games` variant. */
+object GamesTabToStringFingerprint : Fingerprint(
+    name = "toString",
+    returnType = "Ljava/lang/String;",
+    parameters = emptyList(),
+    strings = listOf("Games(customIcon="),
+    custom = { method, classDef ->
+        classDef.sourceFile == "ShowcaseTab.kt" && method.implementation != null
     },
 )
