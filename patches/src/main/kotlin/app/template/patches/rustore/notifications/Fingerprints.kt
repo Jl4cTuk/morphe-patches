@@ -6,8 +6,8 @@ import app.morphe.patcher.Fingerprint
 object NotificationCenterIconButtonWidgetFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf(
-        "Lvo2/h;",
-        "Lws2/b;",
+        "L",
+        "L",
         "Landroidx/compose/runtime/a;",
         "I",
         "I",

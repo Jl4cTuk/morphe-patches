@@ -1,6 +1,8 @@
 package app.template.patches.rustore.kaspersky
 
 import app.morphe.patcher.Fingerprint
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 /**
  * Matches `KasperskyScannerDto.isPeriodicScanEnabled()`, the persisted flag
@@ -18,9 +20,15 @@ object KasperskyScannerDtoIsPeriodicScanEnabledFingerprint : Fingerprint(
  * the daily `PeriodicKasperskyScanner` WorkManager task.
  */
 object KasperskyScannerWorkerEnqueuePeriodicFingerprint : Fingerprint(
-    definingClass =
-        "Lru/vk/store/feature/kaspersky/impl/presentation/KasperskyScannerWorker\$a;",
-    name = "a",
     returnType = "Ljava/lang/Object;",
-    parameters = listOf("Lmb/k0;", "Lpq0/c;"),
+    parameters = listOf("L", "L"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "KasperskyScannerWorker.kt" &&
+            method.implementation?.instructions?.any { instruction ->
+                val field = (instruction as? ReferenceInstruction)?.reference as? FieldReference
+
+                field?.definingClass == "Ljava/util/concurrent/TimeUnit;" &&
+                    field.name == "DAYS"
+            } == true
+    },
 )

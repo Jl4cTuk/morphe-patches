@@ -7,8 +7,10 @@ import app.morphe.patcher.Fingerprint
  * authorization check that displays the login prompt before an app update.
  */
 object AuthSuggestShownFingerprint : Fingerprint(
-    definingClass = "Ll61/e;",
-    name = "a",
     returnType = "Ljava/lang/Object;",
-    parameters = listOf("Lpq0/c;"),
+    parameters = listOf("L"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "AuthSuggestDelegateImpl.kt" &&
+            method.implementation != null
+    },
 )
