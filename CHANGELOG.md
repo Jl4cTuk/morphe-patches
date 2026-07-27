@@ -1,3 +1,9 @@
+## [1.2.0-dev.16](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.15...v1.2.0-dev.16) (2026-07-27)
+
+### 🐛 Bug Fixes
+
+* port RuStore patches to 1.106.0.3 ([12d25b5](https://github.com/Jl4cTuk/morphe-patches/commit/12d25b560485335f9cf644a077aaab6bbadce3e7))
+
 ## [1.2.0-dev.15](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.14...v1.2.0-dev.15) (2026-07-27)
 
 ### 🐛 Bug Fixes
