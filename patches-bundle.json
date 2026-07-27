@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-07-24T21:35:35",
-  "description": "## [1.2.0-dev.13](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.12...v1.2.0-dev.13) (2026-07-24)\n\n### 🐛 Bug Fixes\n\n* remove Ozon floating and profile ads ([20e110f](https://github.com/Jl4cTuk/morphe-patches/commit/20e110ffdc93aec01fd8cb1541096ada1bd56227))",
-  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.13/patches-1.2.0-dev.13.mpp",
+  "created_at": "2026-07-27T15:29:56",
+  "description": "## [1.2.0-dev.14](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.13...v1.2.0-dev.14) (2026-07-27)\n\n### 🐛 Bug Fixes\n\n* disable Ozon lottery and in-app pushes ([9208ca8](https://github.com/Jl4cTuk/morphe-patches/commit/9208ca8ad8523ee1b0279aa3d680ff2d00514ab9))\n* hide redundant Ozon cart price rows ([8c078df](https://github.com/Jl4cTuk/morphe-patches/commit/8c078df03832652d76c8c3820a089cf73a6b07a5))\n* remove remaining Ozon ads and checkout promos ([59a8518](https://github.com/Jl4cTuk/morphe-patches/commit/59a85189172c320ccfae8a71551d77b5c5990c52))\n\n### ✨ New Features\n\n* disable Ozon checkout tips ([30ebcd1](https://github.com/Jl4cTuk/morphe-patches/commit/30ebcd195e7c1a5758f9417b0ea50ceca227c5e0))\n* disable Ozon telemetry ([f55b615](https://github.com/Jl4cTuk/morphe-patches/commit/f55b6152b9dc5fd3cf0d862a6204ab77774159e3))",
+  "download_url": "https://github.com/Jl4cTuk/morphe-patches/releases/download/v1.2.0-dev.14/patches-1.2.0-dev.14.mpp",
   "signature_download_url": "",
-  "version": "1.2.0-dev.13"
+  "version": "1.2.0-dev.14"
 }

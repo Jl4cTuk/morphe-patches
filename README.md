@@ -9,7 +9,7 @@ Patches for apps I like.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.2.0-dev.13](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.2.0-dev.13)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;14 patches total
+> **[v1.2.0-dev.14](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.2.0-dev.14)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;16 patches total
 <details open>
 <summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
 <br>
@@ -33,7 +33,7 @@ Patches for apps I like.
 </details>
 
 <details open>
-<summary>📦 Ozon&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
+<summary>📦 Ozon&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -43,12 +43,14 @@ Patches for apps I like.
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Disable lottery popup](#disable-lottery-popup) | Prevents the lottery onboarding popup from opening. |  |
+| [Disable checkout tips](#disable-checkout-tips) | Removes courier tips UI and prevents tip IDs or tip API calls from being submitted. |  |
+| [Disable lottery and in-app pushes](#disable-lottery-and-in-app-pushes) | Disables lottery onboarding and the in-app push SDK used for reward popups. |  |
+| [Disable telemetry](#disable-telemetry) | Disables Ozon analytics, attribution, crash reporting, and telemetry uploads. |  |
 | [Hide Ozon Bank ad banner](#hide-ozon-bank-ad-banner) | Removes the advertising banner carousel from the Ozon Bank screen. |  |
 | [Hide account lottery and review feed](#hide-account-lottery-and-review-feed) | Removes the lottery entry banner and review feed shortcut from the account screen. |  |
 | [Hide seller rating prompt](#hide-seller-rating-prompt) | Removes the post-purchase seller rating prompt. |  |
-| [Remove Ozon ads](#remove-ozon-ads) | Removes Ozon ad widgets, floating promotions, banner carousels, and PDP promo blocks. | • Hide recommendation grids |
-| [Show final prices only](#show-final-prices-only) | Hides crossed-out prices and discount percentages while preserving the current price details. |  |
+| [Remove Ozon ads](#remove-ozon-ads) | Removes Ozon ad widgets, checkout promotions, floating promotions, banner carousels, and PDP promo blocks. | • Hide recommendation grids |
+| [Show final prices only](#show-final-prices-only) | Hides crossed-out prices, discount percentages, and redundant price rows in the cart total. |  |
 
 </details>
 

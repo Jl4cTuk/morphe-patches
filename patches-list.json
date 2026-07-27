@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.2.0-dev.13",
+  "version": "1.2.0-dev.14",
   "patches": [
     {
       "name": "Disable Mine redesign",
@@ -110,6 +110,37 @@
       "options": []
     },
     {
+      "name": "Disable checkout tips",
+      "description": "Removes courier tips UI and prevents tip IDs or tip API calls from being submitted.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "19.27.0",
+              "versionCodes": {
+                "ARM64_V8A": 2697,
+                "ARMEABI_V7A": 2697,
+                "X86_64": 2697,
+                "X86": 2697
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Disable gaming profile",
       "description": "Removes the Game Profile section from the Mine screen, including the button and the usage statistics screen.",
       "default": true,
@@ -136,10 +167,43 @@
       "options": []
     },
     {
-      "name": "Disable lottery popup",
-      "description": "Prevents the lottery onboarding popup from opening.",
+      "name": "Disable lottery and in-app pushes",
+      "description": "Disables lottery onboarding and the in-app push SDK used for reward popups.",
       "default": true,
       "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ru.ozon.app.android",
+          "name": "Ozon",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#005BFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "19.27.0",
+              "versionCodes": {
+                "ARM64_V8A": 2697,
+                "ARMEABI_V7A": 2697,
+                "X86_64": 2697,
+                "X86": 2697
+              },
+              "isExperimental": false,
+              "minSdk": 26,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable telemetry",
+      "description": "Disables Ozon analytics, attribution, crash reporting, and telemetry uploads.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "ru.ozon.app.android",
@@ -313,7 +377,7 @@
     },
     {
       "name": "Remove Ozon ads",
-      "description": "Removes Ozon ad widgets, floating promotions, banner carousels, and PDP promo blocks.",
+      "description": "Removes Ozon ad widgets, checkout promotions, floating promotions, banner carousels, and PDP promo blocks.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -354,7 +418,7 @@
     },
     {
       "name": "Show final prices only",
-      "description": "Hides crossed-out prices and discount percentages while preserving the current price details.",
+      "description": "Hides crossed-out prices, discount percentages, and redundant price rows in the cart total.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [

@@ -1,3 +1,16 @@
+## [1.2.0-dev.14](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.13...v1.2.0-dev.14) (2026-07-27)
+
+### 🐛 Bug Fixes
+
+* disable Ozon lottery and in-app pushes ([9208ca8](https://github.com/Jl4cTuk/morphe-patches/commit/9208ca8ad8523ee1b0279aa3d680ff2d00514ab9))
+* hide redundant Ozon cart price rows ([8c078df](https://github.com/Jl4cTuk/morphe-patches/commit/8c078df03832652d76c8c3820a089cf73a6b07a5))
+* remove remaining Ozon ads and checkout promos ([59a8518](https://github.com/Jl4cTuk/morphe-patches/commit/59a85189172c320ccfae8a71551d77b5c5990c52))
+
+### ✨ New Features
+
+* disable Ozon checkout tips ([30ebcd1](https://github.com/Jl4cTuk/morphe-patches/commit/30ebcd195e7c1a5758f9417b0ea50ceca227c5e0))
+* disable Ozon telemetry ([f55b615](https://github.com/Jl4cTuk/morphe-patches/commit/f55b6152b9dc5fd3cf0d862a6204ab77774159e3))
+
 ## [1.2.0-dev.13](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.12...v1.2.0-dev.13) (2026-07-24)
 
 ### 🐛 Bug Fixes
