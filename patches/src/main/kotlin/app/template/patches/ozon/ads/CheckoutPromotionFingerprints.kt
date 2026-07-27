@@ -10,7 +10,7 @@ object CheckoutStickyNotificationMapperFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = listOf(
         "Lru/ozon/app/android/checkoutcomposer/stickyNotification/data/StickyNotificationDTO;",
-        "LT30/d;",
+        "L",
     ),
 )
 

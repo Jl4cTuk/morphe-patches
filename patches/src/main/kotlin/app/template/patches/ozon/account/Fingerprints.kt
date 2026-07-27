@@ -11,7 +11,7 @@ object EntryBannerSingleMapperFingerprint : Fingerprint(
     parameters = listOf(
         "Lru/ozon/app/android/regulardraw/widgets/entryBannerWidget/v1/data/" +
             "EntryBannerSubWidget\$Single;",
-        "LT30/d;",
+        "L",
     ),
 )
 
@@ -24,7 +24,7 @@ object EntryBannerMultiMapperFingerprint : Fingerprint(
     parameters = listOf(
         "Lru/ozon/app/android/regulardraw/widgets/entryBannerWidget/v1/data/" +
             "EntryBannerSubWidget\$Multi;",
-        "LT30/d;",
+        "L",
     ),
 )
 
@@ -36,7 +36,7 @@ object EntryBannerContentMapperFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = listOf(
         "Lru/ozon/app/android/regulardraw/widgets/entryBannerWidget/v2/data/EntryBannerDTO;",
-        "LT30/d;",
+        "L",
     ),
 )
 
@@ -48,7 +48,7 @@ object EntryBannerOverlayMapperFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = listOf(
         "Lru/ozon/app/android/regulardraw/widgets/entryBannerWidget/v2/data/EntryBannerDTO;",
-        "LT30/d;",
+        "L",
     ),
 )
 
@@ -58,7 +58,7 @@ object DesignSystemAtomsMapperFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = listOf(
         "Lru/ozon/app/android/widgets/designSystemAtoms/data/DesignSystemAtomsDTO;",
-        "LT30/d;",
+        "L",
     ),
 )
 
@@ -69,7 +69,7 @@ object LegacyCellListMapperFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = listOf(
         "Lru/ozon/app/android/widgets/commonTextWidget/cellList/data/CellListV2DTO;",
-        "LT30/d;",
+        "L",
     ),
 )
 
@@ -79,6 +79,6 @@ object CellListMapperFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = listOf(
         "Lru/ozon/app/android/common/cellList/v2/data/CellListV2DTO;",
-        "LT30/d;",
+        "L",
     ),
 )

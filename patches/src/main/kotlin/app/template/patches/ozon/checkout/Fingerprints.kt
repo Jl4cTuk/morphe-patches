@@ -10,7 +10,7 @@ object FreshCourierTipsMapperFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = listOf(
         "Lru/ozon/app/android/fresh/unsorted/widgets/courierTips/data/CourierTipsDTO;",
-        "LT30/d;",
+        "L",
     ),
 )
 
@@ -22,7 +22,7 @@ object OrderDoneCourierTipsMapperFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = listOf(
         "Lru/ozon/app/android/checkoutorderdone/orderdone/courierTips/data/CourierTipsDTO;",
-        "LT30/d;",
+        "L",
     ),
 )
 

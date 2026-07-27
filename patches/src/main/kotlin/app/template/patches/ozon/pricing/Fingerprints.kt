@@ -25,6 +25,6 @@ object CartTotalBindFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf(
         "Lru/ozon/app/android/checkoutcomposer/total/models/TotalVO;",
-        "LT30/d;",
+        "L",
     ),
 )

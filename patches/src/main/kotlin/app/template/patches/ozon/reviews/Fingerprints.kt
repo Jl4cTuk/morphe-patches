@@ -9,6 +9,6 @@ object RateItemsMapperFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = listOf(
         "Lru/ozon/app/android/ugc/widgets/rateItemsV2/data/RateItemsV2Wrapper;",
-        "LT30/d;",
+        "L",
     ),
 )

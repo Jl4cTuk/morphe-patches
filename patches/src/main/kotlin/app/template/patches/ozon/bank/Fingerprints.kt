@@ -9,6 +9,6 @@ object BankAdBannerMapperFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = listOf(
         "Lru/ozon/app/android/bank/widgets/adBanner/data/AdBannerDTO;",
-        "LT30/d;",
+        "L",
     ),
 )
