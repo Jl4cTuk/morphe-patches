@@ -42,6 +42,17 @@
 - Статус: build, exclusive/full apply, чистая JADX-декомпиляция и запуск
   приложения подтверждены.
 
+## Ozon 19.27.0 — optional courier tips modules
+
+- Цель: применять `Disable checkout tips` к разным builds с одним
+  `versionName`.
+- Не использовать: обязательный `.method` для targets из `fresh` и
+  `checkoutorderdone`; отдельный build/split может их не содержать.
+- Использовать: `matchAll(0..1)` для UI/API hooks, но оставлять три
+  `CheckoutRequestInterceptor` hooks обязательными.
+- Статус: локальный build/apply подтверждён; alternate build требует повторной
+  проверки.
+
 ## Формат новой записи
 
 ```markdown

@@ -3,6 +3,9 @@ package app.template.patches.ozon.checkout
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.ozon.shared.Constants.COMPATIBILITY_OZON_CURRENT
+import java.util.logging.Logger
+
+private val logger = Logger.getLogger("DisableCheckoutTips")
 
 private val returnEmptyList = """
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
@@ -26,11 +29,18 @@ val disableCheckoutTipsPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_OZON_CURRENT)
 
     execute {
-        FreshCourierTipsMapperFingerprint.method.addInstructions(0, returnEmptyList)
-        OrderDoneCourierTipsMapperFingerprint.method.addInstructions(0, returnEmptyList)
-
-        FreshSendCourierTipsFingerprint.method.addInstructions(0, "return-void")
-        OrderDoneSendCourierTipsFingerprint.method.addInstructions(0, "return-void")
+        val optionalMatches = listOf(
+            FreshCourierTipsMapperFingerprint.matchAll(0..1) to returnEmptyList,
+            OrderDoneCourierTipsMapperFingerprint.matchAll(0..1) to returnEmptyList,
+            FreshSendCourierTipsFingerprint.matchAll(0..1) to "return-void",
+            OrderDoneSendCourierTipsFingerprint.matchAll(0..1) to "return-void",
+        )
+        val optionalHooks = optionalMatches.sumOf { (matches, instructions) ->
+            matches.forEach { match ->
+                match.method.addInstructions(0, instructions)
+            }
+            matches.size
+        }
 
         // Prevent deeplinks from introducing a tip ID.
         AddPvzTipIdFingerprint.method.addInstructions(0, "return-void")
@@ -38,5 +48,10 @@ val disableCheckoutTipsPatch = bytecodePatch(
         // Clear tip state both for normal requests and for server-driven checkout actions.
         AddCheckoutLocationParamsFingerprint.method.addInstructions(0, removePvzTipId)
         CheckoutInterceptStateFingerprint.method.addInstructions(0, removePvzTipId)
+
+        logger.info(
+            "Disabled $optionalHooks optional courier tips UI/API hooks and " +
+                "3 required checkout request hooks",
+        )
     }
 }
