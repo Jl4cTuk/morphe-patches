@@ -23,9 +23,10 @@ private const val OZON_REC_SHELF_VIEW_MODEL =
 private const val OZON_CROSS_SALE_PREFIX = "Lru/ozon/app/android/pdp/widgets/crosssale/"
 private const val OZON_CMS_BANNER_CAROUSEL_PREFIX =
     "Lru/ozon/app/android/storefront/widgets/cms/bannercarousel/"
-private const val OZON_HIGHLIGHT_PRODUCTS_OVERLAY_MAPPER =
-    "Lru/ozon/app/android/marketing/widgets/highlightProducts/core/" +
-        "HighlightProductsOverlayViewMapper;"
+private const val OZON_MARKETING_WIDGETS_PREFIX =
+    "Lru/ozon/app/android/marketing/widgets/"
+private const val OZON_OVERLAY_WIDGET_MAPPER_BASE =
+    "Lru/ozon/app/android/composer/widgets/v2/overlay/OverlayWidgetScreenViewItemMapper2;"
 private const val OZON_UOBJECT_GRID_ONE_BANNER_MAPPER =
     "Lru/ozon/app/android/universalwidgets/widgets/uw/old/uobject/gridone/singleitem/" +
         "UniversalObjectGridOneSingleItemBannerViewMapper;"
@@ -185,7 +186,7 @@ private fun Method.isShellNavbarBgSetBackground(classType: String) =
 @Suppress("unused")
 val removeOzonAdsPatch = bytecodePatch(
     name = "Remove Ozon ads",
-    description = "Removes Ozon ad widgets, floating promotions, banner carousels, and PDP promo blocks.",
+    description = "Removes Ozon ad widgets, checkout promotions, floating promotions, banner carousels, and PDP promo blocks.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_OZON_CURRENT)
@@ -199,6 +200,42 @@ val removeOzonAdsPatch = bytecodePatch(
 
     execute {
         val shouldHideRecommendationGrids = hideRecommendationGrids != false
+
+        CheckoutStickyNotificationMapperFingerprint.method.addInstructions(
+            0,
+            """
+                invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
+                move-result-object v0
+                return-object v0
+            """.trimIndent(),
+        )
+
+        PaymentInfoAtomBindFingerprint.method.addInstructions(
+            0,
+            """
+                instance-of v0, p1, Lru/ozon/app/android/atoms/data/disclaimer/DisclaimerAtom;
+                if-eqz v0, :checkout_payment_atom_visible
+                move-object v0, p1
+                check-cast v0, Lru/ozon/app/android/atoms/data/disclaimer/DisclaimerAtom;
+                invoke-virtual {v0}, Lru/ozon/app/android/atoms/data/disclaimer/DisclaimerAtom;->getButtons()Ljava/util/List;
+                move-result-object v0
+                if-eqz v0, :checkout_payment_atom_visible
+                invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
+                move-result v0
+                if-nez v0, :checkout_payment_atom_visible
+                iget-object v0, p0, Lru/ozon/app/android/checkoutcomposer/paymentInfoV2/presentation/dynamicElements/AtomVH;->view:Lru/ozon/uni/atoms/v3/containers/SingleAtom;
+                const/16 v1, 0x8
+                invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
+                return-void
+
+                :checkout_payment_atom_visible
+                iget-object v0, p0, Lru/ozon/app/android/checkoutcomposer/paymentInfoV2/presentation/dynamicElements/AtomVH;->view:Lru/ozon/uni/atoms/v3/containers/SingleAtom;
+                const/4 v1, 0x0
+                invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
+            """.trimIndent(),
+        )
+
+        CheckoutSavingsBadgeComposeFingerprint.method.addInstructions(0, "return-void")
 
         var patchedAdCanMapMethods = 0
         var patchedAdListMapMethods = 0
@@ -217,7 +254,7 @@ val removeOzonAdsPatch = bytecodePatch(
         var patchedCrossSaleBindMethods = 0
         var patchedCmsBannerListMapMethods = 0
         var patchedCmsBannerBindMethods = 0
-        var patchedHighlightProductsOverlayCanMapMethods = 0
+        var patchedMarketingOverlayListMapMethods = 0
         var patchedUObjectGridOneBannerCanMapMethods = 0
         var patchedBigPromoNavbarLayoutMethods = 0
         var patchedBigPromoNavbarMeasureMethods = 0
@@ -255,16 +292,18 @@ val removeOzonAdsPatch = bytecodePatch(
             }
 
             when {
-                classType == OZON_HIGHLIGHT_PRODUCTS_OVERLAY_MAPPER -> {
-                    patchMethods({ it.isWidgetCanMapMethod() }) { method ->
+                classType.startsWith(OZON_MARKETING_WIDGETS_PREFIX) &&
+                    classDef.superclass == OZON_OVERLAY_WIDGET_MAPPER_BASE -> {
+                    patchMethods({ it.isListMapMethod() }) { method ->
                         method.addInstructions(
                             0,
                             """
-                                const/16 p0, 0x0
-                                return p0
+                                invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
+                                move-result-object p0
+                                return-object p0
                             """,
                         )
-                        patchedHighlightProductsOverlayCanMapMethods++
+                        patchedMarketingOverlayListMapMethods++
                     }
                 }
 
@@ -1009,7 +1048,7 @@ val removeOzonAdsPatch = bytecodePatch(
             patchedCrossSaleBindMethods == 0 &&
             patchedCmsBannerListMapMethods == 0 &&
             patchedCmsBannerBindMethods == 0 &&
-            patchedHighlightProductsOverlayCanMapMethods == 0 &&
+            patchedMarketingOverlayListMapMethods == 0 &&
             patchedUObjectGridOneBannerCanMapMethods == 0 &&
             patchedBigPromoNavbarLayoutMethods == 0 &&
             patchedBigPromoNavbarMeasureMethods == 0 &&
@@ -1054,7 +1093,7 @@ val removeOzonAdsPatch = bytecodePatch(
                 "$patchedCrossSaleBindMethods cross-sale bind methods, " +
                 "$patchedCmsBannerListMapMethods CMS banner list map methods, and " +
                 "$patchedCmsBannerBindMethods CMS banner bind methods, " +
-                "$patchedHighlightProductsOverlayCanMapMethods highlight-products overlay canMap methods, " +
+                "$patchedMarketingOverlayListMapMethods marketing overlay list map methods, " +
                 "$patchedUObjectGridOneBannerCanMapMethods object-grid banner canMap methods, " +
                 "$patchedBigPromoNavbarLayoutMethods big promo navbar layout methods, " +
                 "$patchedBigPromoNavbarMeasureMethods big promo navbar measure methods, " +
@@ -1075,7 +1114,9 @@ val removeOzonAdsPatch = bytecodePatch(
                 "$patchedSearchWarlockCellListV2MapperMethods search Warlock cell-list V2 mapper methods, and " +
                 "$patchedOzonSelectCellV2BindMethods Ozon Select cell V2 bind methods, " +
                 "$patchedOzonSelectCommonCellV2BindMethods Ozon Select common cell V2 bind methods, and " +
-                "$patchedOzonSelectImageCellBindMethods Ozon Select image cell bind methods.",
+                "$patchedOzonSelectImageCellBindMethods Ozon Select image cell bind methods, " +
+                "1 checkout sticky notification mapper, 1 payment promo atom bind method, and " +
+                "1 checkout savings badge Compose method.",
         )
     }
 }
