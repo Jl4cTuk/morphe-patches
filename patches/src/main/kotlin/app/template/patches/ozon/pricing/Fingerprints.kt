@@ -17,3 +17,14 @@ object PriceDiscountFingerprint : Fingerprint(
     returnType = "Ljava/lang/String;",
     parameters = emptyList(),
 )
+
+/** Matches the checkout-composer total view holder shared by the cart and checkout pages. */
+object CartTotalBindFingerprint : Fingerprint(
+    definingClass = "Lru/ozon/app/android/checkoutcomposer/total/presentation/main/TotalVH;",
+    name = "bind",
+    returnType = "V",
+    parameters = listOf(
+        "Lru/ozon/app/android/checkoutcomposer/total/models/TotalVO;",
+        "LT30/d;",
+    ),
+)
