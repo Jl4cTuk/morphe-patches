@@ -9,7 +9,7 @@ Patches for apps I like.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.2.0-dev.14](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.2.0-dev.14)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;16 patches total
+> **[v1.2.0-dev.15](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.2.0-dev.15)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;16 patches total
 <details open>
 <summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
 <br>
@@ -38,7 +38,7 @@ Patches for apps I like.
 
 **🎯 Supported versions:**
 
-| 19.27.0 |
+| 19.28.0 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |

@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.2.0-dev.14",
+  "version": "1.2.0-dev.15",
   "patches": [
     {
       "name": "Disable Mine redesign",
@@ -124,12 +124,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "19.27.0",
+              "version": "19.28.0",
               "versionCodes": {
-                "ARM64_V8A": 2697,
-                "ARMEABI_V7A": 2697,
-                "X86_64": 2697,
-                "X86": 2697
+                "ARM64_V8A": 2698,
+                "ARMEABI_V7A": 2698,
+                "X86_64": 2698,
+                "X86": 2698
               },
               "isExperimental": false,
               "minSdk": 26,
@@ -181,12 +181,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "19.27.0",
+              "version": "19.28.0",
               "versionCodes": {
-                "ARM64_V8A": 2697,
-                "ARMEABI_V7A": 2697,
-                "X86_64": 2697,
-                "X86": 2697
+                "ARM64_V8A": 2698,
+                "ARMEABI_V7A": 2698,
+                "X86_64": 2698,
+                "X86": 2698
               },
               "isExperimental": false,
               "minSdk": 26,
@@ -214,12 +214,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "19.27.0",
+              "version": "19.28.0",
               "versionCodes": {
-                "ARM64_V8A": 2697,
-                "ARMEABI_V7A": 2697,
-                "X86_64": 2697,
-                "X86": 2697
+                "ARM64_V8A": 2698,
+                "ARMEABI_V7A": 2698,
+                "X86_64": 2698,
+                "X86": 2698
               },
               "isExperimental": false,
               "minSdk": 26,
@@ -271,12 +271,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "19.27.0",
+              "version": "19.28.0",
               "versionCodes": {
-                "ARM64_V8A": 2697,
-                "ARMEABI_V7A": 2697,
-                "X86_64": 2697,
-                "X86": 2697
+                "ARM64_V8A": 2698,
+                "ARMEABI_V7A": 2698,
+                "X86_64": 2698,
+                "X86": 2698
               },
               "isExperimental": false,
               "minSdk": 26,
@@ -302,12 +302,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "19.27.0",
+              "version": "19.28.0",
               "versionCodes": {
-                "ARM64_V8A": 2697,
-                "ARMEABI_V7A": 2697,
-                "X86_64": 2697,
-                "X86": 2697
+                "ARM64_V8A": 2698,
+                "ARMEABI_V7A": 2698,
+                "X86_64": 2698,
+                "X86": 2698
               },
               "isExperimental": false,
               "minSdk": 26,
@@ -359,12 +359,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "19.27.0",
+              "version": "19.28.0",
               "versionCodes": {
-                "ARM64_V8A": 2697,
-                "ARMEABI_V7A": 2697,
-                "X86_64": 2697,
-                "X86": 2697
+                "ARM64_V8A": 2698,
+                "ARMEABI_V7A": 2698,
+                "X86_64": 2698,
+                "X86": 2698
               },
               "isExperimental": false,
               "minSdk": 26,
@@ -390,12 +390,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "19.27.0",
+              "version": "19.28.0",
               "versionCodes": {
-                "ARM64_V8A": 2697,
-                "ARMEABI_V7A": 2697,
-                "X86_64": 2697,
-                "X86": 2697
+                "ARM64_V8A": 2698,
+                "ARMEABI_V7A": 2698,
+                "X86_64": 2698,
+                "X86": 2698
               },
               "isExperimental": false,
               "minSdk": 26,
@@ -431,12 +431,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "19.27.0",
+              "version": "19.28.0",
               "versionCodes": {
-                "ARM64_V8A": 2697,
-                "ARMEABI_V7A": 2697,
-                "X86_64": 2697,
-                "X86": 2697
+                "ARM64_V8A": 2698,
+                "ARMEABI_V7A": 2698,
+                "X86_64": 2698,
+                "X86": 2698
               },
               "isExperimental": false,
               "minSdk": 26,

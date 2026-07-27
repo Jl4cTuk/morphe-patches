@@ -1,3 +1,10 @@
+## [1.2.0-dev.15](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.14...v1.2.0-dev.15) (2026-07-27)
+
+### 🐛 Bug Fixes
+
+* port Ozon patches to 19.28.0 ([f0bee41](https://github.com/Jl4cTuk/morphe-patches/commit/f0bee4134c4cb9dd9c3b468be55ed9c54bfca36f))
+* tolerate missing Ozon courier tips modules ([077eb38](https://github.com/Jl4cTuk/morphe-patches/commit/077eb388ee99aec419bc94cdff37649fdb109cc3))
+
 ## [1.2.0-dev.14](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0-dev.13...v1.2.0-dev.14) (2026-07-27)
 
 ### 🐛 Bug Fixes
