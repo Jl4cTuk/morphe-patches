@@ -9,7 +9,7 @@ Patches for apps I like.
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.2.0](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.2.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;16 patches total
+> **[v1.3.0-dev.1](https://github.com/Jl4cTuk/morphe-patches/releases/tag/v1.3.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;19 patches total
 <details open>
 <summary>📦 RuStore&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
 <br>
@@ -29,6 +29,23 @@ Patches for apps I like.
 | [Hide Featured and Games tabs](#hide-featured-and-games-tabs) | Removes the Featured and Games tabs and opens Apps by default. |  |
 | [Hide notification buttons](#hide-notification-buttons) | Removes notification buttons from the search bar and Mine screen. |  |
 | [Skip update auth](#skip-update-auth) | Removes the login requirement when updating apps. |  |
+
+</details>
+
+<details open>
+<summary>📦 Ozon Bank&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 19.27.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Disable Ozon Bank VPN warning](#disable-ozon-bank-vpn-warning) | Removes the warning shown when Ozon Bank detects an active VPN connection. |  |
+| [Hide Ozon Bank benefit sections](#hide-ozon-bank-benefit-sections) | Adds options to hide selected non-advertising sections from the Benefit page. | • Hide Buy for 1 ruble<br>• Hide Partner benefits<br>• Hide For shopping on Ozon<br>• Hide Ozon Premium |
+| [Hide Ozon Bank promotions](#hide-ozon-bank-promotions) | Uses the classic home design and removes promotional cards, sections, shortcuts, and the startup installment offer from Ozon Bank pages. |  |
 
 </details>
 

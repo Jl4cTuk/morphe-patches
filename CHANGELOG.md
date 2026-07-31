@@ -1,3 +1,9 @@
+## [1.3.0-dev.1](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0...v1.3.0-dev.1) (2026-07-31)
+
+### ✨ New Features
+
+* add Ozon Bank cleanup patches ([e98d203](https://github.com/Jl4cTuk/morphe-patches/commit/e98d203b4657cae66b65bf809b72b2982603b504))
+
 ## [1.2.0](https://github.com/Jl4cTuk/morphe-patches/compare/v1.1.0...v1.2.0) (2026-07-27)
 
 ### 🐛 Bug Fixes
