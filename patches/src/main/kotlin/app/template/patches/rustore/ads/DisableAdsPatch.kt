@@ -2,17 +2,22 @@ package app.template.patches.rustore.ads
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
+import app.template.patches.rustore.auth.disableVkIdAuthPrompt
 import app.template.patches.rustore.shared.Constants.COMPATIBILITY_RUSTORE
 
 @Suppress("unused")
 val disableAdsPatch = bytecodePatch(
     name = "Disable ads",
-    description = "Removes advertisements and recommendations from search.",
+    description =
+        "Removes advertisements, search recommendations, and the unsolicited " +
+            "VK ID prompt.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_RUSTORE)
 
     execute {
+        disableVkIdAuthPrompt()
+
         RawAdvertisementRepoGetFingerprint.method.addInstructions(
             0,
             """
