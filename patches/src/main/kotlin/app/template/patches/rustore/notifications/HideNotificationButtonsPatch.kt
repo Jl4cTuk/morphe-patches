@@ -1,18 +1,9 @@
 package app.template.patches.rustore.notifications
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.patch.bytecodePatch
-import app.template.patches.rustore.shared.Constants.COMPATIBILITY_RUSTORE
+import app.morphe.patcher.patch.BytecodePatchContext
 
-@Suppress("unused")
-val hideNotificationButtonsPatch = bytecodePatch(
-    name = "Hide notification buttons",
-    description = "Removes notification buttons from the search bar and Mine screen.",
-    default = true,
-) {
-    compatibleWith(COMPATIBILITY_RUSTORE)
-
-    execute {
-        NotificationCenterIconButtonWidgetFingerprint.method.addInstructions(0, "return-void")
-    }
+context(_: BytecodePatchContext)
+internal fun hideNotificationButtons() {
+    NotificationCenterIconButtonWidgetFingerprint.method.addInstructions(0, "return-void")
 }

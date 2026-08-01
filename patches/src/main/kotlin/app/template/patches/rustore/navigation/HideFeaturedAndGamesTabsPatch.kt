@@ -2,8 +2,7 @@ package app.template.patches.rustore.navigation
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
-import app.morphe.patcher.patch.bytecodePatch
-import app.template.patches.rustore.shared.Constants.COMPATIBILITY_RUSTORE
+import app.morphe.patcher.patch.BytecodePatchContext
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.RegisterRangeInstruction
@@ -11,15 +10,8 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.TypeReference
 
-@Suppress("unused")
-val hideFeaturedAndGamesTabsPatch = bytecodePatch(
-    name = "Hide Featured and Games tabs",
-    description = "Removes the Featured and Games tabs and opens Apps by default.",
-    default = true,
-) {
-    compatibleWith(COMPATIBILITY_RUSTORE)
-
-    execute {
+context(_: BytecodePatchContext)
+internal fun hideFeaturedAndGamesTabs() {
         val featuredClass = FeaturedTabToStringFingerprint.classDef
         val featuredType = featuredClass.type
         val featuredSingleton = featuredClass.fields.singleOrNull { field ->
@@ -143,5 +135,4 @@ val hideFeaturedAndGamesTabsPatch = bytecodePatch(
                 const/4 v$scratchRegister, 0x0
             """,
         )
-    }
 }
