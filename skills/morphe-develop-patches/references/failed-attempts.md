@@ -269,6 +269,76 @@
   APK и targeted JADX-проверку с сохранённым исходным fallback. Из-за суточного
   ограничения показа требуется длительная runtime-проверка.
 
+## RuStore 1.106.0.3 — самопроизвольная шторка VK ID
+
+- Цель: отключить только автоматическое предложение входа через VK ID, не
+  ломая ручной вход из профиля и защищённых действий.
+- Не использовать: fingerprint только по `sourceFile =
+  AuthSuggestDelegateImpl.kt`, object-return и одному object-параметру. Этим
+  условиям одновременно соответствует coroutine continuation
+  `AuthSuggestDelegateImpl$ensureAuthSuggestShown$1.invokeSuspend()`; ранний
+  `return null` попадал в него, а исходный delegate продолжал открывать шторку.
+- Использовать: дополнительно требовать `new-instance
+  FullscreenAuthDestination` в `ensureAuthSuggestShown()`. Эта ветка находится
+  в центральном suggest-delegate рядом с альтернативным показом bottom sheet
+  и отсутствует в coroutine continuation.
+- Статус: прежний fingerprint отвергнут после targeted JADX-проверки
+  результата apply; уточнённый target прошёл build, exclusive apply и targeted
+  JADX/smali-проверку: ранний выход находится в `l61.e`, исходный coroutine
+  `l61.d` больше не является целью. Runtime-проверка редкого показа ожидается.
+
+## RuStore 1.106.0.3 — фильтрация обновлений по installer source
+
+- Цель: исключить из проверки обновлений пакеты с installer source
+  `com.android.vending`, сохранив RuStore installs и sideload APK.
+- Не использовать: глобально подменять `PackageManager`-данные в
+  `InstalledAppDetailsDataSource`; эти данные имеют другие потребители. Не
+  использовать также штатный whitelist-параметр
+  `GetNewerAppsUseCaseImpl.getAppVersionInfoList(installer)`: значение
+  `ru.vk.store` вместе с Google Play исключит приложения без installer source.
+- Использовать: перед сетевым lookup задать сравниваемый installer как
+  `com.android.vending` и обратить существующую ветку whitelist в blacklist.
+  Нулевой installer и любое другое значение проходят исходный mapping.
+- Статус: глобальная подмена и whitelist отвергнуты при статическом
+  исследовании; blacklist replacement прошёл build, exclusive apply, targeted
+  JADX/smali-проверку и apply полного default-набора RuStore. В итоговом smali
+  совпадение с `com.android.vending` ветвится за mapping, а другие и нулевые
+  installer source проходят в `AppVersionInfo`. Runtime-проверка ожидается.
+
+## RuStore 1.106.0.3 — отключение программы лояльности
+
+- Цель: отключить onboarding, `Points` в `Mine`, loyalty push/deeplink и
+  отдельный верхний баннер с рекламой баллов.
+- Не использовать: только `RawAdvertisementRepositoryImpl.get()`. Верхний
+  server-driven блок приходит как position rule `BANNERS(upper=true)` через
+  `InterestingPositionRulesRepository` и не проходит через общий рекламный
+  repository.
+- Использовать: переназначить зарегистрированный remote-key
+  `featureLoyaltyEnabled` на отсутствующий ключ с исходным default `false`, а
+  в mapper position rules пропускать только `BANNERS` с `upper=true`. Нижние
+  позиции `BANNERS` и остальные элементы ленты сохраняются.
+- Статус: оба независимых пути подтверждены по xrefs и smali. Патч прошёл
+  build, exclusive apply, полный default apply и targeted smali-проверку:
+  remote-key заменён, а `upper=true` ветвится на следующую итерацию mapper-а.
+  Runtime-проверка ожидается.
+
+## RuStore 1.106.0.3 — объединение cleanup hooks в patch options
+
+- Цель: перенести VK ID cleanup и четыре настраиваемые чистки в единый patch
+  `Disable ads`, не регистрируя helpers как отдельные user-facing patches.
+- Не использовать: обычные top-level helper-функции, напрямую обращающиеся к
+  `Fingerprint.method`. Вне `execute` им не передаётся обязательный
+  `BytecodePatchContext`, поэтому Kotlin compilation завершается ошибкой `No
+  context argument for BytecodePatchContext found`.
+- Использовать: context-bound helpers с `context(_: BytecodePatchContext)` и
+  вызывать их из `Disable ads.execute`. Boolean options проверять через
+  `option != false`, чтобы сохранять включённое поведение и при default `true`,
+  и при отсутствии явно переданного значения.
+- Статус: первый вариант отвергнут на compile. Context-bound replacement
+  прошёл build; exclusive apply с defaults изменяет 13 ожидаемых классов, со
+  всеми четырьмя options=false — только 3 базовых класса рекламы/VK ID; полный
+  default apply выполняет 5 user-facing RuStore patches и 21 class edit.
+
 ## Формат новой записи
 
 ```markdown
