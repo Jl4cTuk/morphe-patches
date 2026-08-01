@@ -1,3 +1,15 @@
+## [1.3.0-dev.2](https://github.com/Jl4cTuk/morphe-patches/compare/v1.3.0-dev.1...v1.3.0-dev.2) (2026-08-01)
+
+### 🐛 Bug Fixes
+
+* disable unsolicited RuStore VK ID prompt ([9f42421](https://github.com/Jl4cTuk/morphe-patches/commit/9f42421f48f90c2ab280aa26c462e703da4c172e))
+* enable classic RuStore Mine layout by default ([3c00334](https://github.com/Jl4cTuk/morphe-patches/commit/3c00334527653a6ae12c960b9e018aadb77fb4f3))
+
+### ✨ New Features
+
+* add RuStore loyalty, gaming, navigation, and notification cleanup options ([b1e1d9b](https://github.com/Jl4cTuk/morphe-patches/commit/b1e1d9b758567eadbbd75b1d4684cc2c4ece46d7))
+* exclude Google Play apps from RuStore updates ([34def52](https://github.com/Jl4cTuk/morphe-patches/commit/34def520dd463a027a7717706a21661fda2c35aa))
+
 ## [1.3.0-dev.1](https://github.com/Jl4cTuk/morphe-patches/compare/v1.2.0...v1.3.0-dev.1) (2026-07-31)
 
 ### ✨ New Features
