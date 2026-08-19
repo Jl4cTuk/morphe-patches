@@ -50,22 +50,59 @@ val disableAdsPatch = bytecodePatch(
     execute {
         disableVkIdAuthPrompt()
 
-        RawAdvertisementRepoGetFingerprint.method.addInstructions(
-            0,
-            """
-                const/4 v0, 0x0
-                return-object v0
-            """,
-        )
+        RawAdvertisementRepoGetFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(
+                0,
+                """
+                    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
+                    move-result-object v0
+                    return-object v0
+                """,
+            )
 
-        SearchZeroContentConstructorFingerprint.method.addInstructions(
-            0,
-            """
-                const/4 p1, 0x0
-                const/4 p2, 0x0
-                const/4 p4, 0x0
-            """,
-        )
+        PersonalRecommendationAdvertisementRepoGetFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(
+                0,
+                """
+                    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
+                    move-result-object v0
+                    check-cast v0, Ljava/io/Serializable;
+                    return-object v0
+                """,
+            )
+
+        PromoRepositoryGetFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(
+                0,
+                """
+                    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
+                    move-result-object v0
+                    check-cast v0, Ljava/io/Serializable;
+                    return-object v0
+                """,
+            )
+
+        SearchZeroContentConstructorFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(
+                0,
+                """
+                    const/4 p1, 0x0
+                    const/4 p2, 0x0
+                    const/4 p4, 0x0
+                """,
+            )
 
         if (disableGamingProfileOption != false) {
             disableGamingProfile()
