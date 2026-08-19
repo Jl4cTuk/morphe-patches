@@ -32,7 +32,7 @@ val disableAdsPatch = bytecodePatch(
         title = "Disable loyalty program",
         description =
             "Disables loyalty onboarding, points, notifications, links, and " +
-                "the upper points banner.",
+                "cashback banners.",
     )
     val hideFeaturedAndGamesTabsOption by booleanOption(
         key = "hideFeaturedAndGamesTabs",
