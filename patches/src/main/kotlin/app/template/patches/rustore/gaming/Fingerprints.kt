@@ -33,12 +33,11 @@ object GameCenterV2ButtonComposableFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf(
         "Lkotlin/jvm/functions/Function0;",
-        "Landroidx/compose/ui/Modifier;",
+        "L",
         "L",
         "Landroidx/compose/runtime/a;",
         "I",
     ),
-    strings = listOf("GAME_CENTER_BUTTON_V2_KEY"),
     custom = { method, classDef ->
         classDef.sourceFile == "GameCenterV2ButtonWidget.kt" &&
             method.implementation != null
@@ -50,12 +49,11 @@ object GameCenterV1ButtonComposableFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf(
         "Lkotlin/jvm/functions/Function0;",
-        "Landroidx/compose/ui/Modifier;",
+        "L",
         "L",
         "Landroidx/compose/runtime/a;",
         "I",
     ),
-    strings = listOf("GAME_CENTER_BUTTON_KEY"),
     custom = { method, classDef ->
         classDef.sourceFile == "GameCenterButtonWidget.kt" &&
             method.implementation != null

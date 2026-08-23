@@ -27,6 +27,7 @@ object RawAdvertisementRepoGetFingerprint : Fingerprint(
         "Ljava/util/Set;",
         "Ljava/util/UUID;",
         "Z",
+        "Z",
         "L",
     ),
     custom = { method, classDef ->
