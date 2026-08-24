@@ -1,3 +1,10 @@
+## [1.3.0-dev.4](https://github.com/Jl4cTuk/morphe-patches/compare/v1.3.0-dev.3...v1.3.0-dev.4) (2026-08-24)
+
+### 🐛 Bug Fixes
+
+* restore Ozon Bank patch compatibility on 19.31.0 ([d73b980](https://github.com/Jl4cTuk/morphe-patches/commit/d73b980c18b3660726f49295d49804f31329b308))
+* restore Ozon patches on 19.31.0 ([0440e25](https://github.com/Jl4cTuk/morphe-patches/commit/0440e2589cf9cbf47d93b28736c983099770fd5a))
+
 ## [1.3.0-dev.3](https://github.com/Jl4cTuk/morphe-patches/compare/v1.3.0-dev.2...v1.3.0-dev.3) (2026-08-23)
 
 ### 🐛 Bug Fixes
