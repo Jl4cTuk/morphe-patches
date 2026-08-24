@@ -252,20 +252,18 @@ val hideOzonBankPromotionsPatch = bytecodePatch(
         ShowCbottomBridgeHandleSyncFingerprint.method.addInstructions(
             0,
             """
-                move-object v1, p2
-                sget-object v2, Ljava/util/Locale;->ROOT:Ljava/util/Locale;
-                invoke-virtual {p2, v2}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
-                move-result-object p2
-                const-string/jumbo v0, "деньги в рассрочку"
-                invoke-virtual {p2, v0}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+                sget-object v0, Ljava/util/Locale;->ROOT:Ljava/util/Locale;
+                invoke-virtual {p2, v0}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
+                move-result-object v0
+                const-string/jumbo v1, "деньги в рассрочку"
+                invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
                 move-result v0
                 if-eqz v0, :morphe_allow_ozon_bank_cbottom
-                sget-object v0, Lru/ozon/fintech/features/finwebview/domain/nativebridge/NativeResult${'$'}Success;->Companion:Lru/ozon/fintech/features/finwebview/domain/nativebridge/NativeResult${'$'}Success${'$'}Companion;
-                invoke-virtual {v0}, Lru/ozon/fintech/features/finwebview/domain/nativebridge/NativeResult${'$'}Success${'$'}Companion;->getDEFAULT_WITH_SUCCESS()Lru/ozon/fintech/features/finwebview/domain/nativebridge/NativeResult${'$'}Success;
-                move-result-object v0
+                new-instance v0, Lru/ozon/fintech/features/finwebview/domain/nativebridge/NativeResult${'$'}Success;
+                const-string/jumbo v1, "{\"success\":true}"
+                invoke-direct {v0, v1}, Lru/ozon/fintech/features/finwebview/domain/nativebridge/NativeResult${'$'}Success;-><init>(Ljava/lang/String;)V
                 return-object v0
                 :morphe_allow_ozon_bank_cbottom
-                move-object p2, v1
                 nop
             """.trimIndent(),
         )
