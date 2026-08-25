@@ -255,3 +255,159 @@ object UsageStatsPromptEligibilityFingerprint : Fingerprint(
             )
     },
 )
+
+val analyticsCoroutineWorkerClasses = listOf(
+    "Lru/mail/omicron/MultiAccountWorkManagerExecutor${'$'}MultiAccountOmicronSyncWorker;",
+    "Lru/vk/store/feature/install/identifier/impl/presentation/InstallIdentifierSyncWorker;",
+    "Lru/vk/store/feature/storeapp/analytics/remote/impl/presentation/SendAnalyticsEventWorker;",
+    "Lru/vk/store/feature/storeapp/recommendation/start/trackingUrl/impl/data/PublisherTrackingWorker;",
+    "Lru/vk/store/feature/usagestats/impl/presentation/UsageStatsCollectorWorker;",
+)
+
+val analyticsCoroutineWorkerFingerprints = analyticsCoroutineWorkerClasses.map { type ->
+    Fingerprint(
+        definingClass = type,
+        name = "b",
+        returnType = "Ljava/lang/Object;",
+        parameters = listOf("Lyt0/e;"),
+    )
+}
+
+val analyticsWorkerClasses = listOf(
+    "Lru/mail/omicron/DefaultWorkManagerExecutor${'$'}PeriodicWorker;",
+    "Lru/ok/tracer/disk/usage/DiskUsageWorker;",
+    "Lru/ok/tracer/heap/dumps/exceptions/ShrinkDumpWorker;",
+    "Lru/ok/tracer/upload/SampleUploadWorker;",
+)
+
+val analyticsWorkerFingerprints = analyticsWorkerClasses.map { type ->
+    Fingerprint(
+        definingClass = type,
+        name = "doWork",
+        returnType = "Landroidx/work/c${'$'}a;",
+        parameters = emptyList(),
+    )
+}
+
+object TracerDiskUsageInitializerFingerprint : Fingerprint(
+    definingClass = "Lru/ok/tracer/disk/usage/DiskUsage;",
+    name = "initialize${'$'}tracer_disk_usage_release",
+    returnType = "V",
+    parameters = listOf("Landroid/content/Context;"),
+)
+
+object TracerSampleUploadFingerprint : Fingerprint(
+    definingClass = "Lru/ok/tracer/upload/SampleUploader;",
+    name = "upload",
+    returnType = "V",
+    parameters = listOf(
+        "Landroid/content/Context;",
+        "Lru/ok/tracer/TracerFeature;",
+        "Ljava/io/File;",
+        "J",
+        "Ljava/lang/String;",
+        "Z",
+        "Ljava/lang/String;",
+        "Ljava/lang/String;",
+        "Ljava/lang/Long;",
+        "Ljava/lang/Long;",
+        "Ljava/util/Map;",
+        "Lru/ok/tracer/opentelemetry/util/TraceParent;",
+    ),
+)
+
+object OmicronNetworkRequestFingerprint : Fingerprint(
+    definingClass = "Lt31/b;",
+    name = "a",
+    returnType = "Lt31/e;",
+    parameters = listOf(
+        "Lj31/d;",
+        "Lt31/a;",
+        "Ll31/d;",
+    ),
+)
+
+object OmicronDefaultScheduleFingerprint : Fingerprint(
+    definingClass = "Lru/mail/omicron/DefaultWorkManagerExecutor;",
+    name = "b",
+    returnType = "V",
+    parameters = listOf("J", "Z"),
+)
+
+object OmicronMultiAccountScheduleFingerprint : Fingerprint(
+    definingClass = "Lru/mail/omicron/MultiAccountWorkManagerExecutor;",
+    name = "a",
+    returnType = "V",
+    parameters = listOf("J", "J", "Z"),
+)
+
+object InstallIdentifierInitializerFingerprint : Fingerprint(
+    returnType = "Ljava/lang/Object;",
+    parameters = listOf("Lau0/d;"),
+    strings = listOf("InstallIdentifierSyncWorker"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "InstallIdentifierInitializer.kt" &&
+            method.implementation != null
+    },
+)
+
+object RemoteAnalyticsInitializerFingerprint : Fingerprint(
+    returnType = "Ljava/lang/Object;",
+    parameters = listOf("Lau0/d;"),
+    strings = listOf("SendAnalyticsEventPeriodicWorker"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "RemoteAnalyticsInitializer.kt" &&
+            method.implementation != null
+    },
+)
+
+object RemoteAnalyticsSchedulerFingerprint : Fingerprint(
+    returnType = "Ljava/lang/Object;",
+    parameters = listOf("Lau0/d;"),
+    strings = listOf("SendAnalyticsEventWorker"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "SendAnalyticsEventWorkerScheduler.kt" &&
+            method.implementation != null
+    },
+)
+
+object UsageStatsInitializerFingerprint : Fingerprint(
+    returnType = "Ljava/lang/Object;",
+    parameters = listOf("Lau0/d;"),
+    strings = listOf("UsageStatsCollectorWorker"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "UsageStatsInitializer.kt" &&
+            method.implementation != null
+    },
+)
+
+object PublisherTrackingScheduleFingerprint : Fingerprint(
+    returnType = "V",
+    parameters = listOf(
+        "Ljava/lang/String;",
+        "Ljava/lang/String;",
+    ),
+    strings = listOf("TRACKING_URL", "PACKAGE_NAME_KEY"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "TrackingUrlRepositoryImpl.kt" &&
+            method.implementation != null
+    },
+)
+
+object AnalyticsDispatchFingerprint : Fingerprint(
+    definingClass = "Lso2/e;",
+    name = "d",
+    returnType = "V",
+    parameters = listOf(
+        "Ljava/lang/String;",
+        "Ljava/util/Map;",
+        "Z",
+    ),
+)
+
+object AnalyticsUserIdFingerprint : Fingerprint(
+    definingClass = "Lso2/e;",
+    name = "b",
+    returnType = "V",
+    parameters = listOf("J"),
+)

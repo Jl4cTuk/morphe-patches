@@ -65,3 +65,12 @@ object ConnectSessionExternalVpnCheckFingerprint : Fingerprint(
     returnType = "Ljava/lang/Boolean;",
     parameters = emptyList(),
 )
+
+/** Handles downloads routed through the disabled Connect VPN session. */
+object ConnectDownloadWorkerFingerprint : Fingerprint(
+    definingClass =
+        "Lru/vk/store/feature/connect/session/impl/presentation/ConnectDownloadWorker;",
+    name = "b",
+    returnType = "Ljava/lang/Object;",
+    parameters = listOf("Lyt0/e;"),
+)

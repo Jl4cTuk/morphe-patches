@@ -13,6 +13,13 @@ import java.util.logging.Logger
 
 private val logger = Logger.getLogger("DisableRuStoreBackgroundHooks")
 
+private val returnWorkerSuccess = """
+    sget-object v0, Landroidx/work/b;->b:Landroidx/work/b;
+    new-instance v1, Landroidx/work/c${'$'}a${'$'}c;
+    invoke-direct {v1, v0}, Landroidx/work/c${'$'}a${'$'}c;-><init>(Landroidx/work/b;)V
+    return-object v1
+""".trimIndent()
+
 private val removedPermissions = setOf(
     "android.permission.CHANGE_WIFI_STATE",
     "android.permission.CHANGE_NETWORK_STATE",
@@ -162,9 +169,16 @@ val disableBackgroundHooksPatch = bytecodePatch(
                     "return-object v0",
             )
 
+        ConnectDownloadWorkerFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(0, returnWorkerSuccess)
+
         logger.info(
             "Disabled network callback initialization, Connect session launch, " +
-                "VPN tunnel creation, socket protection, and external VPN detection",
+                "VPN tunnel creation, socket protection, external VPN detection, " +
+                "and the Connect download worker",
         )
     }
 }
