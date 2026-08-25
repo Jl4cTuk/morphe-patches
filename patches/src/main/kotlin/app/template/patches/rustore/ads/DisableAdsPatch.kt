@@ -8,7 +8,6 @@ import app.template.patches.all.analytics.childrenNamed
 import app.template.patches.all.analytics.disableComponentsByPrefix
 import app.template.patches.all.analytics.removeChildren
 import app.template.patches.rustore.auth.disableVkIdAuthPrompt
-import app.template.patches.rustore.gaming.disableGamingProfile
 import app.template.patches.rustore.loyalty.disableLoyaltyProgram
 import app.template.patches.rustore.navigation.hideFeaturedAndGamesTabs
 import app.template.patches.rustore.notifications.hideNotificationButtons
@@ -58,12 +57,6 @@ val disableAdsPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_RUSTORE)
     dependsOn(disableRuStoreAdvertisingManifestPatch)
 
-    val disableGamingProfileOption by booleanOption(
-        key = "disableGamingProfile",
-        default = true,
-        title = "Disable gaming profile",
-        description = "Removes the Game Profile section and usage statistics screen.",
-    )
     val disableLoyaltyProgramOption by booleanOption(
         key = "disableLoyaltyProgram",
         default = true,
@@ -247,9 +240,6 @@ val disableAdsPatch = bytecodePatch(
                 """,
             )
 
-        if (disableGamingProfileOption != false) {
-            disableGamingProfile()
-        }
         if (disableLoyaltyProgramOption != false) {
             disableLoyaltyProgram()
         }
