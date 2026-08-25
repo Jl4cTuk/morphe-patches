@@ -7,7 +7,6 @@ import app.morphe.patcher.patch.resourcePatch
 import app.template.patches.all.analytics.childrenNamed
 import app.template.patches.all.analytics.disableComponentsByPrefix
 import app.template.patches.all.analytics.removeChildren
-import app.template.patches.rustore.auth.disableVkIdAuthPrompt
 import app.template.patches.rustore.loyalty.disableLoyaltyProgram
 import app.template.patches.rustore.navigation.hideFeaturedAndGamesTabs
 import app.template.patches.rustore.notifications.hideNotificationButtons
@@ -79,8 +78,6 @@ val disableAdsPatch = bytecodePatch(
     )
 
     execute {
-        disableVkIdAuthPrompt()
-
         AdvertisementIdsConstructorFingerprint
             .matchAll(1..1)
             .single()
