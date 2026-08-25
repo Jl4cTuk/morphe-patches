@@ -8,6 +8,7 @@ import app.template.patches.all.analytics.childrenNamed
 import app.template.patches.all.analytics.disableAnalyticsDependency
 import app.template.patches.all.analytics.disableComponentsByPrefix
 import app.template.patches.all.analytics.disableComponentsWhere
+import app.template.patches.all.analytics.removeChildren
 import app.template.patches.rustore.shared.Constants.COMPATIBILITY_RUSTORE
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
@@ -56,6 +57,24 @@ private val disableRuStoreAnalyticsManifestPatch = resourcePatch {
             val application = document.documentElement
                 .childrenNamed("application")
                 .single() as Element
+            val manifest = document.documentElement
+
+            val removedPermissions = manifest.childrenNamed(
+                "uses-permission",
+                "uses-permission-sdk-23",
+            ).filter { permission ->
+                permission.getAttribute("android:name") in setOf(
+                    "com.google.android.providers.gsf.permission.READ_GSERVICES",
+                    "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE",
+                )
+            }
+            if (removedPermissions.size != 2) {
+                throw PatchException(
+                    "Expected two analytics permissions, found ${removedPermissions.size}",
+                )
+            }
+            manifest.removeChildren(removedPermissions)
+            logger.info("Analytics permissions: removed ${removedPermissions.size}")
 
             val altCraftDisabled = application.disableComponentsWhere { name ->
                 name.startsWith("ru.vk.store.lib.analytics.")
@@ -64,7 +83,25 @@ private val disableRuStoreAnalyticsManifestPatch = resourcePatch {
 
             val metricsDisabled =
                 application.disableComponentsByPrefix("ru.rustore.sdk.metrics.")
+            if (metricsDisabled != 1) {
+                throw PatchException(
+                    "Expected one RuStore Metrics component, found $metricsDisabled",
+                )
+            }
             logger.info("RuStore Metrics: disabled $metricsDisabled components")
+
+            val transportDisabled = application.disableComponentsByPrefix(
+                "ru.vk.store.feature.storeapp.install.referrer.",
+                "ru.ok.tracer.",
+                "com.vk.superapp.logs.",
+                "com.google.android.datatransport.",
+            )
+            if (transportDisabled != 9) {
+                throw PatchException(
+                    "Expected nine analytics transport components, found $transportDisabled",
+                )
+            }
+            logger.info("Analytics transports: disabled $transportDisabled components")
         }
     }
 }
@@ -101,6 +138,51 @@ val disableRuStoreAnalyticsPatch = bytecodePatch(
             .method
             .addInstructions(0, "return-void")
         MyTrackerSendFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(0, "return-void")
+
+        RequestDeviceIdFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(
+                0,
+                "const-string v0, \"00000000-0000-0000-0000-000000000000\"\n" +
+                    "return-object v0",
+            )
+
+        InstallReferrerServiceBindFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
+        GoogleInstallReferrerConnectFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(
+                0,
+                "const/4 v0, 0x2\n" +
+                    "invoke-interface {p1, v0}, " +
+                    "Lcom/android/installreferrer/api/InstallReferrerStateListener;->" +
+                    "onInstallReferrerSetupFinished(I)V\n" +
+                    "return-void",
+            )
+
+        OkTracerInitializerFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+
+        GoogleDataTransportJobFingerprint
+            .matchAll(1..1)
+            .single()
+            .method
+            .addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+        GoogleDataTransportAlarmFingerprint
             .matchAll(1..1)
             .single()
             .method
@@ -301,7 +383,8 @@ val disableRuStoreAnalyticsPatch = bytecodePatch(
 
         logger.info(
             "Disabled AltCraft, Radar, MyTracker, SuperApp StatLog, VK Push crash " +
-                "reporting, and the Usage Stats analytics prompt",
+                "reporting, stable device ID, install referrer, OK Tracer, Google Data " +
+                "Transport, and the Usage Stats analytics prompt",
         )
     }
 }

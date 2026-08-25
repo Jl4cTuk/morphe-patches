@@ -83,6 +83,68 @@ object MyTrackerSendFingerprint : Fingerprint(
     },
 )
 
+/** Matches RuStore's stable request identifier built from Android ID and device properties. */
+object RequestDeviceIdFingerprint : Fingerprint(
+    returnType = "Ljava/lang/String;",
+    parameters = emptyList(),
+    strings = listOf("android_id"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "DeviceInfoProvider.kt" &&
+            method.implementation != null
+    },
+)
+
+/** Matches the exported RuStore install-referrer service used for attribution. */
+object InstallReferrerServiceBindFingerprint : Fingerprint(
+    returnType = "Landroid/os/IBinder;",
+    parameters = listOf("Landroid/content/Intent;"),
+    custom = { method, classDef ->
+        classDef.sourceFile == "RemoteInstallReferrerProvider.kt" &&
+            method.implementation != null
+    },
+)
+
+/** Matches the Google Play install-referrer client before it binds to Play Store. */
+object GoogleInstallReferrerConnectFingerprint : Fingerprint(
+    definingClass = "Lcom/android/installreferrer/api/InstallReferrerClientImpl;",
+    name = "startConnection",
+    returnType = "V",
+    parameters = listOf(
+        "Lcom/android/installreferrer/api/InstallReferrerStateListener;",
+    ),
+)
+
+/** Matches OK Tracer's manifest-started content provider initialization entry point. */
+object OkTracerInitializerFingerprint : Fingerprint(
+    definingClass = "Lru/ok/tracer/startup/InitializationProvider;",
+    name = "onCreate",
+    returnType = "Z",
+    parameters = emptyList(),
+)
+
+/** Matches Google Data Transport's JobScheduler upload entry point. */
+object GoogleDataTransportJobFingerprint : Fingerprint(
+    definingClass =
+        "Lcom/google/android/datatransport/runtime/scheduling/jobscheduling/" +
+            "JobInfoSchedulerService;",
+    name = "onStartJob",
+    returnType = "Z",
+    parameters = listOf("Landroid/app/job/JobParameters;"),
+)
+
+/** Matches Google Data Transport's AlarmManager upload entry point. */
+object GoogleDataTransportAlarmFingerprint : Fingerprint(
+    definingClass =
+        "Lcom/google/android/datatransport/runtime/scheduling/jobscheduling/" +
+            "AlarmManagerSchedulerBroadcastReceiver;",
+    name = "onReceive",
+    returnType = "V",
+    parameters = listOf(
+        "Landroid/content/Context;",
+        "Landroid/content/Intent;",
+    ),
+)
+
 /** Matches WorkManagerImpl's `cancelUniqueWork()` override after R8 renaming. */
 object WorkManagerCancelUniqueImplementationFingerprint : Fingerprint(
     returnType = "L",
