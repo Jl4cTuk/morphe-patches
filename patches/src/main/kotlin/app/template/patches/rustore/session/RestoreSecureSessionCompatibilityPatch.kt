@@ -1,5 +1,7 @@
 package app.template.patches.rustore.session
 
+import app.morphe.patcher.patch.InstallerType
+import app.morphe.patcher.patch.PatchAvailability
 import app.morphe.patcher.patch.rawResourcePatch
 import app.template.patches.rustore.shared.Constants.COMPATIBILITY_RUSTORE
 import app.template.patches.rustore.shared.Constants.OFFICIAL_RUSTORE_SIGNER_SHA256
@@ -72,6 +74,13 @@ val restoreSecureSessionCompatibilityPatch = rawResourcePatch(
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_RUSTORE)
+
+    availability { installer, _ ->
+        when (installer) {
+            InstallerType.MOUNT -> PatchAvailability.UNAVAILABLE
+            InstallerType.STANDARD, InstallerType.SHIZUKU -> PatchAvailability.REQUIRED
+        }
+    }
 
     execute {
         nativeSignaturePatchSpecs.forEach { spec ->
